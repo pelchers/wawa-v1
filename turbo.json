@@ -1,0 +1,16 @@
+// turbo.json
+{
+    "pipeline": {
+      "dev": {
+        "cache": false,
+        "dependsOn": ["^dev"],
+        "outputs": [],
+        "persistent": true
+      },
+      "build": {
+        "dependsOn": ["^build"],
+        "outputs": ["dist/**", ".next/**", "public/dist/**"]
+      }
+    },
+    "globalDependencies": [".env"]
+  }

@@ -1,0 +1,23 @@
+{
+  "name": "my-monorepo",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "node server/dist/index.js",
+    "studio": "cd server && npx prisma studio"
+  },
+  "devDependencies": {
+    "turbo": "^1.13.4"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
