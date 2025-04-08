@@ -62,19 +62,57 @@ export const logAction = async (action: string, data: any) => {
 7. Demystifies JavaScript/TypeScript syntax for developers who may be less familiar with the language
 8. Clarifies how operators and expressions work in context, making code more approachable
 
-## 2. When explaining complex systems or architectures
+## 2. When asked for plain English explanations of code
+
+**Instruction:** When the user asks for a "plain English explainer" for code segments, provide a simple, jargon-free explanation directly below each code block with the heading "In plain English:". The explanation should:
+- Use everyday language that non-programmers can understand
+- Explain what the code does, not just how it works
+- Relate the code to real-world concepts when possible
+- Avoid technical jargon unless absolutely necessary (and explain it when used)
+- Focus on the purpose and outcome of the code, not just the syntax
+
+**Example of good response:**
+
+When asked to explain this code segment:
+
+```typescript
+function App() {
+  const [count, setCount] = useState(0)
+
+  const handleCountClick = () => {
+    logAction('increment_count', { from: count, to: count + 1 })
+    setCount((count) => count + 1)
+  }
+```
+
+**In plain English:**
+This code creates a counter that keeps track of a number (starting at 0) and increases it when something is clicked. When the click happens, two things occur:
+1. The app records this action in a log, noting what the count was before and what it will be after
+2. The count is increased by 1
+
+It's like a tally counter that not only counts but also keeps a record of each time you pressed the button and what the count was before and after.
+
+**Benefits of this approach:**
+1. Makes code accessible to stakeholders with limited technical knowledge
+2. Helps new developers understand the purpose of code, not just the mechanics
+3. Bridges the gap between technical implementation and business requirements
+4. Provides context that might not be obvious from the code alone
+5. Helps identify when code is overly complex (if it's hard to explain simply)
+6. Serves as a form of documentation that's easier to understand than technical comments
+
+## 3. When explaining complex systems or architectures
 
 **Instruction:** When explaining complex systems, break down the explanation into clear components with examples for each part.
 
 **Example of good response:** [Example would go here]
 
-## 3. When providing step-by-step guides
+## 4. When providing step-by-step guides
 
 **Instruction:** For tutorials or guides, number steps clearly, provide context for each step, and include verification steps.
 
 **Example of good response:** [Example would go here]
 
-## 4. When suggesting code improvements
+## 5. When suggesting code improvements
 
 **Instruction:** When suggesting improvements to existing code, explain the benefits of each change and potential trade-offs.
 
