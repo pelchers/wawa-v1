@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
+import likeRoutes from './routes/likeRoutes';
 
 dotenv.config();
 
@@ -48,6 +49,9 @@ app.get("/api/env", (req, res) => {
  * Think of it as a restaurant that has different menus and prices depending on whether it's lunch or dinner time - this endpoint tells you
  * which "menu" is currently active and where to find it.
  */
+
+// Register API routes
+app.use('/api/likes', likeRoutes);
 
 app.post("/api/log", (req, res) => {
   const { action, data } = req.body;
