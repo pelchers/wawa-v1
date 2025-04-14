@@ -4,6 +4,22 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import config from './config'
 import { logAction } from './utils/logger'
+import { wawaTheme } from './styles/wawa-theme'
+
+// Import Navigation component
+import Navigation from './components/Navigation'
+
+// Import section components (we'll create these next)
+import ExecutiveSummary from './sections/ExecutiveSummary'
+import MissionStatement from './sections/MissionStatement'
+import MarketingObjectives from './sections/MarketingObjectives'
+import SwotAnalysis from './sections/SwotAnalysis'
+import MarketResearch from './sections/MarketResearch'
+import MarketingStrategy from './sections/MarketingStrategy'
+import ExecutionPlan from './sections/ExecutionPlan'
+import Budget from './sections/Budget'
+import Conclusion from './sections/Conclusion'
+import Feedback from './sections/Feedback'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,32 +30,60 @@ function App() {
   }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="wawa-marketing-plan">
+      {/* Navigation */}
+      <Navigation />
+      
+      {/* Executive Summary */}
+      <div id="executive-summary">
+        <ExecutiveSummary />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={handleCountClick}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      
+      {/* Mission Statement */}
+      <div id="mission-statement">
+        <MissionStatement />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <div>
-        <p>API URL: {config.apiUrl}</p>
-        <p>Environment: {config.isProduction ? 'Production' : 'Development'}</p>
+      
+      {/* Marketing Objectives */}
+      <div id="marketing-objectives">
+        <MarketingObjectives />
       </div>
-    </>
+      
+      {/* SWOT Analysis */}
+      <div id="swot-analysis">
+        <SwotAnalysis />
+      </div>
+      
+      {/* Market Research */}
+      <div id="market-research">
+        <MarketResearch />
+      </div>
+      
+      {/* Marketing Strategy */}
+      <div id="marketing-strategy">
+        <MarketingStrategy />
+      </div>
+      
+      {/* Execution Plan */}
+      <div id="execution-plan">
+        <ExecutionPlan />
+      </div>
+      
+      {/* Budget */}
+      <div id="budget">
+        <Budget />
+      </div>
+      
+      {/* Conclusion */}
+      <div id="conclusion">
+        <Conclusion />
+      </div>
+      
+      {/* Feedback Form */}
+      <div id="feedback">
+        <Feedback />
+      </div>
+    </div>
   )
 }
 
