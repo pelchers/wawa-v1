@@ -1,3 +1,5 @@
+import { RouterProvider } from 'react-router-dom';
+import router from './routes/routes';
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -29,62 +31,7 @@ function App() {
     setCount((count) => count + 1)
   }
 
-  return (
-    <div className="wawa-marketing-plan">
-      {/* Navigation */}
-      <Navigation />
-      
-      {/* Executive Summary */}
-      <div id="executive-summary">
-        <ExecutiveSummary />
-      </div>
-      
-      {/* Mission Statement */}
-      <div id="mission-statement">
-        <MissionStatement />
-      </div>
-      
-      {/* Marketing Objectives */}
-      <div id="marketing-objectives">
-        <MarketingObjectives />
-      </div>
-      
-      {/* SWOT Analysis */}
-      <div id="swot-analysis">
-        <SwotAnalysis />
-      </div>
-      
-      {/* Market Research */}
-      <div id="market-research">
-        <MarketResearch />
-      </div>
-      
-      {/* Marketing Strategy */}
-      <div id="marketing-strategy">
-        <MarketingStrategy />
-      </div>
-      
-      {/* Execution Plan */}
-      <div id="execution-plan">
-        <ExecutionPlan />
-      </div>
-      
-      {/* Budget */}
-      <div id="budget">
-        <Budget />
-      </div>
-      
-      {/* Conclusion */}
-      <div id="conclusion">
-        <Conclusion />
-      </div>
-      
-      {/* Feedback Form */}
-      <div id="feedback">
-        <Feedback />
-      </div>
-    </div>
-  )
+  return <RouterProvider router={router} />;
 }
 
 export default App

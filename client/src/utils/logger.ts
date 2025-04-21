@@ -433,4 +433,9 @@ export const logFormSubmit = (formId: string, success: boolean, data?: any, erro
     // In development, we include it to help with debugging
     data: config.isProduction ? 'REDACTED' : data, 
     errors    // Any validation errors
-  }); 
+  });
+
+export const logPageView = (page: string) => {
+  console.log(`Page view: ${page}`);
+  // Will implement actual logging later
+}; 
