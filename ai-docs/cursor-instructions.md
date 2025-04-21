@@ -401,8 +401,5 @@ Let me know if you'd like to add more details or make further adjustments!
 
 **Example of good response:** [Example would go here]
 
-## 5. When suggesting code improvements
+## 5. We are using a single server monorepo for the frontend and backend to make it easier to manage the codebase and deploy via services like render.com.
 
-**Instruction:** When suggesting improvements to existing code, explain the benefits of each change and potential trade-offs.
-
-**Example of good response:** [Example would go here] 

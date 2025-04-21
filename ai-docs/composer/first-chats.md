@@ -55,4 +55,3 @@ Would you like me to help you set up the simple version of your marketing site b
 5. Setting up the JSON data structure (if needed)
 
 Let me know how you'd like to proceed!
-ijk.
