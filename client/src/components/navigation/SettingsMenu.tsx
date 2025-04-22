@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface SettingsMenuProps {
   isLoggedIn?: boolean;
@@ -7,16 +8,26 @@ interface SettingsMenuProps {
 }
 
 const SettingsMenu: FC<SettingsMenuProps> = ({ 
-  isLoggedIn = false, 
+  isLoggedIn: propIsLoggedIn, 
   onLogout = () => console.log('Logout clicked') 
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
+  
+  // Use the authentication state from context if available, otherwise use the prop
+  const isLoggedIn = isAuthenticated !== undefined ? isAuthenticated : propIsLoggedIn;
 
   const pages = [
     { name: 'Home', path: '/' },
     { name: 'Marketing Plan', path: '/home' },
     { name: 'Dashboard', path: '/dashboard' },
   ];
+
+  const handleLogout = () => {
+    logout();
+    onLogout();
+    setIsOpen(false);
+  };
 
   return (
     <div className="fixed top-3 right-3 z-50">
@@ -88,12 +99,9 @@ const SettingsMenu: FC<SettingsMenuProps> = ({
                     Profile
                   </Link>
                   <button
-                    className="block w-full text-left px-4 py-2 text-sm text-wawa-gray-700 
-                             hover:bg-wawa-yellow-400 hover:text-wawa-red-600 transition-all duration-200"
-                    onClick={() => {
-                      onLogout();
-                      setIsOpen(false);
-                    }}
+                    className="block px-4 py-2 text-sm text-wawa-gray-700 hover:bg-wawa-yellow-400 
+                             hover:text-wawa-red-600 transition-all duration-200 w-full text-left bg-transparent"
+                    onClick={handleLogout}
                   >
                     Logout
                   </button>
@@ -109,7 +117,7 @@ const SettingsMenu: FC<SettingsMenuProps> = ({
                     Login
                   </Link>
                   <Link
-                    to="/signup"
+                    to="/register"
                     className="block px-4 py-2 text-sm text-wawa-gray-700 hover:bg-wawa-yellow-400 
                              hover:text-wawa-red-600 transition-all duration-200"
                     onClick={() => setIsOpen(false)}
