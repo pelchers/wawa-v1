@@ -2,9 +2,14 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
-import likeRoutes from './routes/likeRoutes';
+import db from './db';
 
-dotenv.config();
+// Load environment-specific variables
+dotenv.config({
+  path: process.env.NODE_ENV === 'production' 
+    ? path.resolve(__dirname, '../.env.production')
+    : path.resolve(__dirname, '../.env.development')
+});
 
 const app = express();
 const PORT = process.env.PORT || 4100;
@@ -13,8 +18,8 @@ const isProduction = process.env.NODE_ENV === 'production';
 // Configure CORS based on environment
 app.use(cors({
   origin: isProduction
-    ? process.env.FRONTEND_URL // In production, only allow the specific frontend URL
-    : ['http://localhost:5173', 'http://localhost:5373'], // In development, allow local dev servers
+    ? process.env.FRONTEND_URL 
+    : ['http://localhost:5173', 'http://localhost:5373'],
   credentials: true,
 }));
 
@@ -50,13 +55,19 @@ app.get("/api/env", (req, res) => {
  * which "menu" is currently active and where to find it.
  */
 
-// Register API routes
-app.use('/api/likes', likeRoutes);
-
 app.post("/api/log", (req, res) => {
   const { action, data } = req.body;
   console.log(`[CLIENT ACTION] ${action}:`, data);
   res.json({ success: true });
+});
+
+// Add a test query to verify connection
+db.query('SELECT NOW()', (err, res) => {
+  if (err) {
+    console.error('Database connection error:', err);
+  } else {
+    console.log('Database connected successfully at:', res.rows[0].now);
+  }
 });
 
 app.listen(PORT, () => {
