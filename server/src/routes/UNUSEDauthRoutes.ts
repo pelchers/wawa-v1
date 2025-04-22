@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 const router = express.Router();
 const prisma = new PrismaClient();
 
-// Register route with database operations
+// Register route
 router.post('/register', (req, res) => {
   console.log('Register route hit', req.body);
   
@@ -17,12 +17,11 @@ router.post('/register', (req, res) => {
       lastName: req.body.lastName
     }
   })
-  .then((user: any) => {
+  .then(user => {
     console.log('User created successfully:', user);
     res.json({ 
       success: true, 
       message: 'User registered successfully',
-      token: 'dummy-token-for-now',
       user: {
         id: user.id,
         email: user.email,
@@ -31,7 +30,7 @@ router.post('/register', (req, res) => {
       }
     });
   })
-  .catch((error: Error) => {
+  .catch(error => {
     console.error('Error creating user:', error);
     res.status(400).json({ 
       success: false, 
@@ -41,7 +40,7 @@ router.post('/register', (req, res) => {
   });
 });
 
-// Login route with database operations
+// Login route
 router.post('/login', (req, res) => {
   console.log('Login route hit', req.body);
   
@@ -51,7 +50,7 @@ router.post('/login', (req, res) => {
       email: req.body.email
     }
   })
-  .then((user: any) => {
+  .then(user => {
     if (!user) {
       console.log('User not found:', req.body.email);
       return res.status(401).json({ 
@@ -73,7 +72,6 @@ router.post('/login', (req, res) => {
     res.json({ 
       success: true, 
       message: 'Login successful',
-      token: 'dummy-token-for-now',
       user: {
         id: user.id,
         email: user.email,
@@ -82,7 +80,7 @@ router.post('/login', (req, res) => {
       }
     });
   })
-  .catch((error: Error) => {
+  .catch(error => {
     console.error('Error during login:', error);
     res.status(500).json({ 
       success: false, 
@@ -92,10 +90,14 @@ router.post('/login', (req, res) => {
   });
 });
 
-// Get current user route (unchanged for now)
+// Get current user route
 router.get('/me', (req, res) => {
-  res.json({
-    success: true,
+  console.log('Get current user route hit');
+  
+  // In a real app, we would extract the user ID from a JWT token
+  // For now, we'll just return a dummy response
+  res.json({ 
+    success: true, 
     message: 'Get current user endpoint working',
     user: {
       id: 'dummy-id',

@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import db from './db';
-import authRoutes from './routes/authRoutesV2';
+import authRoutes from './routes/authRoutes';
 
 // Load environment-specific variables
 dotenv.config({
