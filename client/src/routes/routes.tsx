@@ -1,6 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Home from '../pages/home';
+import Home from '../pages/home/home';
 import MainLayout from '../components/layout/MainLayout';
+
+// Import auth pages
+import Login from '../pages/auth/Login';
+import Register from '../pages/auth/Register';
+import Profile from '../pages/auth/Profile';
+import ProtectedRoute from '../components/auth/ProtectedRoute';
 
 // Import section pages
 import ExecutiveSummary from '../pages/sections/ExecutiveSummary';
@@ -18,62 +24,78 @@ import Feedback from '../pages/sections/Feedback';
 
 // Define the router configuration
 const router = createBrowserRouter([
+  // Auth routes
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
+  },
+  {
+    path: '/profile',
+    element: <ProtectedRoute><MainLayout><Profile /></MainLayout></ProtectedRoute>,
+  },
+  
+  // Main routes with protection
   {
     path: '/',
-    element: <MainLayout><Home /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><Home /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/home',
-    element: <MainLayout><Home /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><Home /></MainLayout></ProtectedRoute>,
   },
-  // Section pages
+  
+  // Section pages with protection
   {
     path: '/executive-summary',
-    element: <MainLayout><ExecutiveSummary /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><ExecutiveSummary /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/mission-statement',
-    element: <MainLayout><MissionStatement /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><MissionStatement /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/marketing-objectives',
-    element: <MainLayout><MarketingObjectives /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><MarketingObjectives /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/key-performance',
-    element: <MainLayout><KeyPerformance /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><KeyPerformance /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/swot-analysis',
-    element: <MainLayout><SwotAnalysis /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><SwotAnalysis /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/market-research',
-    element: <MainLayout><MarketResearch /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><MarketResearch /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/marketing-strategy',
-    element: <MainLayout><MarketingStrategy /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><MarketingStrategy /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/challenges-solutions',
-    element: <MainLayout><ChallengesSolutions /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><ChallengesSolutions /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/execution',
-    element: <MainLayout><Execution /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><Execution /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/budget',
-    element: <MainLayout><Budget /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><Budget /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/conclusion',
-    element: <MainLayout><Conclusion /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><Conclusion /></MainLayout></ProtectedRoute>,
   },
   {
     path: '/feedback',
-    element: <MainLayout><Feedback /></MainLayout>,
+    element: <ProtectedRoute><MainLayout><Feedback /></MainLayout></ProtectedRoute>,
   },
 ]);
 

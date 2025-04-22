@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import { AuthUser } from '../types/auth';
+import * as authService from '../services/authService';
 
 // Extend Express Request type to include user property
 declare global {
@@ -14,31 +15,66 @@ declare global {
 }
 
 /**
- * Authentication middleware
- * Verifies the JWT token in the Authorization header and adds the user to the request object
+ * Authenticate user from JWT token
  */
-export const authenticate = (req: Request, res: Response, next: NextFunction) => {
-  // Get the token from the Authorization header
-  const authHeader = req.headers.authorization;
-  
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ message: 'Authentication required' });
-  }
-  
-  const token = authHeader.split(' ')[1];
-  
+export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    // Verify the token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key') as {
-      id: string;
-      email: string;
-    };
+    // Get token from header
+    const authHeader = req.headers.authorization;
     
-    // Add the user to the request object
-    req.user = decoded;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({
+        success: false,
+        message: 'Authentication token is missing'
+      });
+    }
+    
+    // Extract token
+    const token = authHeader.split(' ')[1];
+    
+    // Verify token
+    const decoded = authService.verifyToken(token);
+    
+    // Set user in request
+    req.user = {
+      id: decoded.userId,
+      email: decoded.email
+    } as AuthUser;
     
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Invalid or expired token' });
+    return res.status(401).json({
+      success: false,
+      message: 'Invalid authentication token'
+    });
+  }
+};
+
+/**
+ * Optional authentication - doesn't fail if no token is provided
+ */
+export const optionalAuth = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    // Get token from header
+    const authHeader = req.headers.authorization;
+    
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      // Extract token
+      const token = authHeader.split(' ')[1];
+      
+      // Verify token
+      const decoded = authService.verifyToken(token);
+      
+      // Set user in request
+      req.user = {
+        id: decoded.userId,
+        email: decoded.email
+      } as AuthUser;
+    }
+    
+    next();
+  } catch (error) {
+    // Continue without setting user
+    next();
   }
 }; 

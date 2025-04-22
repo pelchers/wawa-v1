@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import db from './db';
+import authRoutes from './routes/authRoutes';
 
 // Load environment-specific variables
 dotenv.config({
@@ -60,6 +61,9 @@ app.post("/api/log", (req, res) => {
   console.log(`[CLIENT ACTION] ${action}:`, data);
   res.json({ success: true });
 });
+
+// Add auth routes
+app.use('/api/auth', authRoutes);
 
 // Add a test query to verify connection
 db.query('SELECT NOW()', (err, res) => {
