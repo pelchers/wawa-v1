@@ -3,112 +3,31 @@
 ## Overview
 This system allows users to view and edit profile information based on the Prisma schema, with proper authorization and a segmented form interface.
 
-## Schema Reference (from schema.prisma)
+## Schema Reference.
 ```prisma
+// Add our actual schema here, focusing on User and direct profile-related models
 model User {
-  id              String          @id @default(uuid())
-  email           String          @unique
-  password        String
-  firstName       String
-  lastName        String
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-  isAdmin         Boolean         @default(false)
-  isVerified      Boolean         @default(false)
-  lastLogin       DateTime?
-  profilePicture  String?
-  bio             String?
-  phoneNumber     String?
-  address         Address?
-  company         Company?
-  experience      Experience[]
-  education       Education[]
-  skills          String[]
-  certifications  Certification[]
-  socialLinks     SocialLink[]
-  preferences     UserPreferences?
-}
-
-model Address {
   id        String   @id @default(uuid())
-  userId    String   @unique
-  street    String
-  city      String
-  state     String
-  zipCode   String
-  country   String
-  user      User     @relation(fields: [userId], references: [id])
-}
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-model Company {
-  id          String    @id @default(uuid())
-  userId      String    @unique
-  name        String
-  position    String
-  department  String
-  startDate   DateTime
-  endDate     DateTime?
-  isCurrent   Boolean   @default(true)
-  description String?
-  user        User      @relation(fields: [userId], references: [id])
-}
+  // Profile Information
+  firstName      String?
+  lastName       String?
+  jobTitle       String?
+  bio            String? @db.Text
+  yearsAtCompany Int?
+  yearsInDept    Int?
+  yearsInRole    Int?
 
-model Experience {
-  id          String    @id @default(uuid())
-  userId      String
-  title       String
-  company     String
-  location    String?
-  startDate   DateTime
-  endDate     DateTime?
-  isCurrent   Boolean   @default(false)
-  description String
-  highlights  String[]
-  user        User      @relation(fields: [userId], references: [id])
-}
-
-model Education {
-  id          String    @id @default(uuid())
-  userId      String
-  institution String
-  degree      String
-  field       String
-  startDate   DateTime
-  endDate     DateTime?
-  grade       String?
-  activities  String[]
-  user        User      @relation(fields: [userId], references: [id])
-}
-
-model Certification {
-  id                  String    @id @default(uuid())
-  userId              String
-  name                String
-  issuingOrganization String
-  issueDate           DateTime
-  expiryDate          DateTime?
-  credentialId        String?
-  credentialUrl       String?
-  user                User      @relation(fields: [userId], references: [id])
-}
-
-model SocialLink {
-  id        String   @id @default(uuid())
-  userId    String
-  platform  String   // 'linkedin' | 'twitter' | 'github' | 'website' | 'other'
-  url       String
-  isPublic  Boolean  @default(true)
-  user      User     @relation(fields: [userId], references: [id])
-}
-
-model UserPreferences {
-  id                String   @id @default(uuid())
-  userId           String   @unique
-  emailNotifications Boolean  @default(true)
-  profileVisibility String   @default("public") // 'public' | 'private' | 'connections'
-  theme            String   @default("system")  // 'light' | 'dark' | 'system'
-  language         String   @default("en")
-  user             User     @relation(fields: [userId], references: [id])
+  // Relations
+  education  Education[]
+  accolades  Accolade[]
+  experience Experience[]
+  references Reference[]
+  // ... other relations
 }
 ```
 
@@ -163,74 +82,35 @@ Backend (server/)
 
 ## Form Sections
 
-### 1. Basic Information
+### 1. Basic Profile
 - First Name
 - Last Name
-- Email
-- Profile Picture
+- Job Title
 - Bio
-- Phone Number
-- Address Information
-  - Street
-  - City
-  - State
-  - Zip Code
-  - Country
+- Years Information
+  - Years at Company
+  - Years in Department
+  - Years in Role
 
-### 2. Company Information
-- Company Name
-- Position
-- Department
-- Start Date
-- End Date
-- Is Current Position
-- Description
+### 2. Work Information
+- Company Details
+  - Internal Company (select)
+  - External Company (text)
+- Department Details
+  - Internal Department (select)
+  - External Department (text)
 
-### 3. Experience
-- Title
-- Company
-- Location
-- Start Date
-- End Date
-- Is Current
-- Description
-- Highlights
+### 3. Reporting Structure
+- Reports To
+  - Manager Selection
+  - Manual Manager Name
+- Direct Reports (view only)
 
-### 4. Education
-- Institution
-- Degree
-- Field of Study
-- Start Date
-- End Date
-- Grade
-- Activities
-
-### 5. Certifications
-- Name
-- Issuing Organization
-- Issue Date
-- Expiry Date
-- Credential ID
-- Credential URL
-
-### 6. Skills & Expertise
-- Skills (Tag Array)
-- Expertise Areas
-- Professional Summary
-
-### 7. Social & Contact
-- Social Links
-  - Platform
-  - URL
-  - Visibility
-- Website
-- Professional Profiles
-
-### 8. Preferences
-- Email Notifications
-- Profile Visibility
-- Theme Preference
-- Language Preference
+### 4. Professional History
+- Education Records
+- Experience History
+- Accolades
+- References
 
 ## Profile View Layout
 
@@ -268,14 +148,14 @@ const Profile = () => {
 ```
 
 ### 2. Data Mapping
-Each profile section maps directly to form sections but with enhanced visual presentation:
-- Basic Info → Profile Header + About Section
-- Company Info → Current Position Highlight
-- Experience → Timeline View
-- Education → Cards Grid
-- Skills → Tag Cloud
-- Certifications → Achievement Cards
-- Social → Connected Profiles Bar
+Each profile section maps directly to form sections with enhanced visual presentation:
+- Basic Info → Profile Header with Years of Service
+- Company & Department → Current Position Card with Company/Department Links
+- Work Relationships → Organizational Chart View
+- Education → Timeline/Cards with Ongoing Indicators
+- Accolades → Achievement Showcase
+- Experience → Career Timeline
+- References → Reference Network Display
 
 ## Implementation Order
 
@@ -308,6 +188,101 @@ Each profile section maps directly to form sections but with enhanced visual pre
    - Version history
    - Privacy controls
    - Profile completeness
+
+## Simplified Implementation Approach
+
+### 1. Extend Existing Profile
+```typescript
+// pages/auth/Profile.tsx (existing)
+const Profile = () => {
+  const { user } = useAuth(); // Has id, email, firstName, lastName
+  const { profileData } = useProfile(user?.id); // Will add extended data
+
+  return (
+    <div>
+      {/* Basic auth info - already exists */}
+      <BasicInfo user={user} />
+
+      {/* New sections - add one at a time */}
+      {profileData && (
+        <>
+          <CompanyInfo data={profileData.company} />
+          <WorkRelations data={profileData} />
+          <EducationSection data={profileData.education} />
+          {/* Add more sections progressively */}
+        </>
+      )}
+    </div>
+  );
+};
+```
+
+### 2. Progressive Section Addition
+Add sections in this order:
+1. Basic Profile Fields (jobTitle, bio, years info)
+2. Company & Department Info
+3. Work Relationships (manager, reports)
+4. Education History
+5. Experience Records
+6. References
+7. Accolades
+
+### 3. Edit Components
+Keep it simple with three base components:
+```typescript
+// components/users/edit/fields/
+- TextInput.tsx    // For text, numbers, dates
+- SelectInput.tsx  // For dropdowns, relationships
+- ArrayInput.tsx   // For education[], experience[]
+```
+
+### 4. Data Flow
+
+src/
+├── pages/
+│   ├── auth/           # Auth-related pages
+│   │   └── Profile.tsx # Base profile with auth
+│   └── users/          # User-related pages
+│       └── ProfileEdit.tsx
+├── components/
+│   ├── auth/          # Auth components
+│   └── users/         # User profile components
+├── types/
+│   ├── auth/          # Auth types
+│   └── users/         # User types
+└── api/
+    ├── auth/          # Auth API
+    └── users/         # User API
+
+```plaintext
+Auth Context (existing)
+     ↓
+Profile Component
+     ↓
+Profile Sections
+     ↓
+Edit Components
+```
+
+### 5. API Integration
+Start with read-only, then add edit functionality:
+```typescript
+// api/users/profile.ts
+export const profileApi = {
+  getProfile: async (userId: string) => {
+    const response = await fetch(`/api/users/${userId}`);
+    return response.json();
+  },
+  // Add update methods later
+};
+```
+
+### 6. Error Prevention
+- Keep auth and profile logic separate
+- All new fields are optional
+- Progressive enhancement
+- Type safety throughout
+- Simple validation rules first
 
 ## Component Dependencies
 
@@ -409,58 +384,38 @@ const Section = <T,>({ data, isEditing, onUpdate }: SectionProps<T>) => {
 export interface UserProfile {
   id: string;
   email: string;
-  password?: string; // Only for forms, never returned from API
-  firstName: string;
-  lastName: string;
+  password?: string; // Only for forms
   createdAt: Date;
   updatedAt: Date;
-  isAdmin: boolean;
-  isVerified: boolean;
-  lastLogin: Date;
-  profilePicture?: string;
+
+  // Profile Information
+  firstName?: string;
+  lastName?: string;
+  jobTitle?: string;
   bio?: string;
-  phoneNumber?: string;
-  address?: AddressInfo;
-  company?: CompanyInfo;
-  experience?: Experience[];
+  yearsAtCompany?: number;
+  yearsInDept?: number;
+  yearsInRole?: number;
+
+  // Company and Department Info
+  companyId?: string;
+  company?: Company;
+  externalCompany?: string;
+  departmentId?: string;
+  department?: Department;
+  externalDepartment?: string;
+
+  // Work Relationships
+  reportsTo?: UserProfile;
+  managerId?: string;
+  managerNameManual?: string;
+  manages?: UserProfile[];
+
+  // Education and Experience
   education?: Education[];
-  skills?: string[];
-  certifications?: Certification[];
-  socialLinks?: SocialLink[];
-  preferences?: UserPreferences;
-}
-
-export interface AddressInfo {
-  street: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  country: string;
-}
-
-export interface CompanyInfo {
-  id: string;
-  userId: string;
-  name: string;
-  position: string;
-  department: string;
-  startDate: Date;
-  endDate?: Date;
-  isCurrent: boolean;
-  description?: string;
-}
-
-export interface Experience {
-  id: string;
-  userId: string;
-  title: string;
-  company: string;
-  location?: string;
-  startDate: Date;
-  endDate?: Date;
-  isCurrent: boolean;
-  description: string;
-  highlights?: string[];
+  accolades?: Accolade[];
+  experience?: Experience[];
+  references?: Reference[];
 }
 
 export interface Education {
@@ -469,38 +424,44 @@ export interface Education {
   institution: string;
   degree: string;
   field: string;
+  startYear: number;
+  endYear?: number;
+  ongoing: boolean;
+}
+
+export interface Accolade {
+  id: string;
+  userId: string;
+  title: string;
+  issuer: string;
+  dateReceived: Date;
+  description?: string;
+}
+
+export interface Experience {
+  id: string;
+  userId: string;
+  position: string;
   startDate: Date;
   endDate?: Date;
-  grade?: string;
-  activities?: string[];
+  current: boolean;
+  description?: string;
+  companyId?: string;
+  company?: Company;
+  externalCompany?: string;
 }
 
-export interface Certification {
+export interface Reference {
   id: string;
   userId: string;
-  name: string;
-  issuingOrganization: string;
-  issueDate: Date;
-  expiryDate?: Date;
-  credentialId?: string;
-  credentialUrl?: string;
-}
-
-export interface SocialLink {
-  id: string;
-  userId: string;
-  platform: 'linkedin' | 'twitter' | 'github' | 'website' | 'other';
-  url: string;
-  isPublic: boolean;
-}
-
-export interface UserPreferences {
-  id: string;
-  userId: string;
-  emailNotifications: boolean;
-  profileVisibility: 'public' | 'private' | 'connections';
-  theme: 'light' | 'dark' | 'system';
-  language: string;
+  internalUserId?: string;
+  internalUser?: UserProfile;
+  externalName?: string;
+  externalEmail?: string;
+  externalPhone?: string;
+  relationship: string;
+  position: string;
+  company: string;
 }
 ```
 
@@ -820,72 +781,28 @@ This ensures:
 
 ## Implementation Steps
 
-### 1. Frontend Components
+### Phase 1: Core Profile
+1. Extend existing Profile.tsx
+2. Add basic profile fields
+3. Implement read-only view
+4. Add edit capability
 
-```typescript
-// ProfileEdit.tsx
-const ProfileEdit = () => {
-  const { user, isLoading } = useProfile();
-  const sections = [
-    { id: 'basic', title: 'Basic Information', component: BasicInfo },
-    { id: 'company', title: 'Company Details', component: CompanyInfo },
-    { id: 'experience', title: 'Experience', component: Experience },
-  ];
+### Phase 2: Work Info
+1. Company selection/entry
+2. Department selection/entry
+3. Reporting structure
 
-  return (
-    <EditForm sections={sections} userData={user} />
-  );
-};
-```
+### Phase 3: History
+1. Education records
+2. Experience entries
+3. Accolades
+4. References
 
-### 2. Form Sections
-
-```typescript
-// sections/BasicInfo.tsx
-const BasicInfo = ({ data, onChange }) => {
-  return (
-    <div className="space-y-4">
-      <TextInput
-        label="First Name"
-        value={data.firstName}
-        onChange={(value) => onChange('firstName', value)}
-      />
-      {/* Other basic fields */}
-    </div>
-  );
-};
-```
-
-### 3. Custom Field Components
-
-```typescript
-// fields/TagInput.tsx
-const TagInput = ({ value, onChange }) => {
-  const [tags, setTags] = useState(value);
-  
-  const handleAdd = (tag: string) => {
-    const newTags = [...tags, tag];
-    setTags(newTags);
-    onChange(newTags);
-  };
-
-  return (
-    <div className="tag-input">
-      {/* Tag input implementation */}
-    </div>
-  );
-};
-```
-
-### 4. API Integration
-
-```typescript
-// services/profileService.ts
-export const updateProfile = async (userId: string, data: ProfileData) => {
-  const response = await api.put(`/api/users/${userId}/profile`, data);
-  return response.data;
-};
-```
+### Phase 4: Polish
+1. Validation
+2. Error handling
+3. Loading states
+4. Mobile responsiveness
 
 ## Styling Guidelines
 
