@@ -6,12 +6,22 @@ import SettingsMenu from '../navigation/SettingsMenu';
 import ScaleWrapper from './ScaleWrapper';
 import TestPanel from '../test/TestPanel';
 import { isFeatureEnabled } from '../../utils/featureToggles';
+import { getComputedScale } from '../../utils/featureConfig';
+import { useState, useEffect } from 'react';
 
 interface MainLayoutProps {
   children: ReactNode;
 }
 
 const MainLayout: FC<MainLayoutProps> = ({ children }) => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <>
       {/* Navigation elements - outside ScaleWrapper */}
@@ -51,7 +61,13 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
 
       {/* Content area - inside ScaleWrapper */}
       <div className="min-h-screen bg-wawa-gray-50 relative">
-        <div className="pt-12">
+        <div 
+          className="pt-12" 
+          style={{ 
+            height: `${100 / getComputedScale(screenWidth)}vh`,
+            minHeight: '100vh'
+          }}
+        >
           <ScaleWrapper>
             {children}
           </ScaleWrapper>

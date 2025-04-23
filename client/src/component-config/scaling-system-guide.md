@@ -67,6 +67,61 @@ const ScaleWrapper: FC<ScaleWrapperProps> = ({ children }) => {
 </MainLayout>
 ```
 
+### 3. Container Height Adjustment
+```typescript
+// In MainLayout.tsx
+const MainLayout: FC<MainLayoutProps> = ({ children }) => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return (
+    <div 
+      className="pt-12" 
+      style={{ 
+        height: `${100 / getComputedScale(screenWidth)}vh`,
+        minHeight: '100vh'
+      }}
+    >
+      <ScaleWrapper>
+        {children}
+      </ScaleWrapper>
+    </div>
+  );
+};
+```
+
+The container height adjustment is crucial because:
+1. It compensates for the scale factor to prevent white space
+2. Uses viewport height (vh) to maintain full-page scaling
+3. Includes minHeight to ensure minimum content area
+4. Adjusts dynamically with window resizing
+
+### 4. Scale Styles
+```typescript
+// In featureConfig.ts
+export const getScaledStyles = (screenWidth: number) => {
+  const scale = getComputedScale(screenWidth);
+  
+  return {
+    transform: `scale(${scale})`,
+    transformOrigin: 'top left',  // Align with screen edge
+    width: `${100 / scale}%`,     // Compensate width for scaling
+    height: 'auto',               // Allow height to adjust naturally
+  };
+};
+```
+
+Key points about the scaling styles:
+1. transformOrigin: 'top left' ensures content aligns with screen edges
+2. width compensation maintains full-width after scaling
+3. height: 'auto' allows content to determine its natural height
+4. Scale is applied at the wrapper level to affect all child content
+
 ## Usage
 
 ### 1. Configuring Scale Settings
