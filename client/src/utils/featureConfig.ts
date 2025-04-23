@@ -13,8 +13,8 @@ interface ScalingConfiguration {
 
 export const scalingConfig: ScalingConfiguration = {
   global: {
-    enabled: true,
-    scale: .5,  // Default no scaling
+    enabled: false,
+    scale: 1,  // Default no scaling
   },
   mobile: {
     enabled: false,
