@@ -1,28 +1,34 @@
-import express from 'express';
+import express, { Request, Response, Router } from 'express';
 import { PrismaClient } from '@prisma/client';
+import * as jwtService from '../services/jwtService';
 
-const router = express.Router();
+const router: Router = express.Router();
 const prisma = new PrismaClient();
 
-// Register route with database operations
-router.post('/register', (req, res) => {
-  console.log('Register route hit', req.body);
-  
-  // Try to create a user in the database
-  prisma.user.create({
-    data: {
-      email: req.body.email,
-      password: req.body.password, // Note: In production, this should be hashed
-      firstName: req.body.firstName,
-      lastName: req.body.lastName
-    }
-  })
-  .then((user: any) => {
+// Define route handlers separately
+const registerHandler = async (req: Request, res: Response): Promise<void> => {
+  try {
+    console.log('Register route hit', req.body);
+    
+    const user = await prisma.user.create({
+      data: {
+        email: req.body.email,
+        password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
+      }
+    });
+
     console.log('User created successfully:', user);
+    const token = jwtService.generateToken({
+      userId: user.id,
+      email: user.email
+    });
+
     res.json({ 
       success: true, 
       message: 'User registered successfully',
-      token: 'dummy-token-for-now',
+      token,
       user: {
         id: user.id,
         email: user.email,
@@ -30,50 +36,52 @@ router.post('/register', (req, res) => {
         lastName: user.lastName
       }
     });
-  })
-  .catch((error: Error) => {
+  } catch (error) {
     console.error('Error creating user:', error);
     res.status(400).json({ 
       success: false, 
       message: 'Error registering user',
-      error: error.message
+      error: error instanceof Error ? error.message : 'Unknown error'
     });
-  });
-});
+  }
+};
 
-// Login route with database operations
-router.post('/login', (req, res) => {
-  console.log('Login route hit', req.body);
-  
-  // Find user by email
-  prisma.user.findUnique({
-    where: {
-      email: req.body.email
-    }
-  })
-  .then((user: any) => {
+const loginHandler = async (req: Request, res: Response): Promise<void> => {
+  try {
+    console.log('Login route hit', req.body);
+    
+    const user = await prisma.user.findUnique({
+      where: { email: req.body.email }
+    });
+
     if (!user) {
       console.log('User not found:', req.body.email);
-      return res.status(401).json({ 
+      res.status(401).json({ 
         success: false, 
         message: 'Invalid credentials' 
       });
+      return;
     }
     
-    // In a real app, we would compare hashed passwords here
     if (user.password !== req.body.password) {
       console.log('Password mismatch for user:', req.body.email);
-      return res.status(401).json({ 
+      res.status(401).json({ 
         success: false, 
         message: 'Invalid credentials' 
       });
+      return;
     }
     
     console.log('User logged in successfully:', user.id);
+    const token = jwtService.generateToken({
+      userId: user.id,
+      email: user.email
+    });
+
     res.json({ 
       success: true, 
       message: 'Login successful',
-      token: 'dummy-token-for-now',
+      token,
       user: {
         id: user.id,
         email: user.email,
@@ -81,29 +89,64 @@ router.post('/login', (req, res) => {
         lastName: user.lastName
       }
     });
-  })
-  .catch((error: Error) => {
+  } catch (error) {
     console.error('Error during login:', error);
     res.status(500).json({ 
       success: false, 
       message: 'Error during login',
-      error: error.message
+      error: error instanceof Error ? error.message : 'Unknown error'
     });
-  });
-});
+  }
+};
 
-// Get current user route (unchanged for now)
-router.get('/me', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Get current user endpoint working',
-    user: {
-      id: 'dummy-id',
-      email: 'dummy@example.com',
-      firstName: 'Dummy',
-      lastName: 'User'
+const getCurrentUserHandler = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const authHeader = req.headers.authorization;
+    
+    if (!authHeader?.startsWith('Bearer ')) {
+      res.status(401).json({
+        success: false,
+        message: 'Authentication token missing'
+      });
+      return;
     }
-  });
-});
+
+    const token = authHeader.split(' ')[1];
+    const decoded = jwtService.verifyToken(token);
+    
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.userId }
+    });
+
+    if (!user) {
+      res.status(404).json({
+        success: false,
+        message: 'User not found'
+      });
+      return;
+    }
+
+    res.json({
+      success: true,
+      message: 'User retrieved successfully',
+      user: {
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName
+      }
+    });
+  } catch (error) {
+    res.status(401).json({
+      success: false,
+      message: 'Invalid authentication token'
+    });
+  }
+};
+
+// Register routes
+router.post('/register', registerHandler);
+router.post('/login', loginHandler);
+router.get('/me', getCurrentUserHandler);
 
 export default router; 
