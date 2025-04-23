@@ -47,6 +47,8 @@ export const getScaledStyles = (screenWidth: number) => {
   
   return {
     transform: `scale(${scale})`,
-    transformOrigin: 'top center',
+    transformOrigin: 'top left',
+    width: `${100 / scale}%`,
+    height: 'auto',
   };
 }; 

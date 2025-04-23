@@ -20,8 +20,7 @@ const ScaleWrapper: FC<ScaleWrapperProps> = ({ children }) => {
       style={{
         ...getScaledStyles(screenWidth),
         minHeight: '100%',
-        width: '100%',
-        transformOrigin: 'top center',
+        overflow: 'hidden',
       }}
     >
       {children}
