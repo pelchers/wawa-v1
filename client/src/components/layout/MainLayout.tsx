@@ -3,6 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import MarketingPlanDropdown from '../navigation/MarketingPlanDropdown';
 import BackButton from '../navigation/BackButton';
 import SettingsMenu from '../navigation/SettingsMenu';
+import ScaleWrapper from './ScaleWrapper';
 import TestPanel from '../test/TestPanel';
 import { isFeatureEnabled } from '../../utils/featureToggles';
 
@@ -13,7 +14,7 @@ interface MainLayoutProps {
 const MainLayout: FC<MainLayoutProps> = ({ children }) => {
   return (
     <>
-      {/* Top WAWA logo */}
+      {/* Navigation elements - outside ScaleWrapper */}
       <div className="fixed top-0 left-1/2 transform -translate-x-1/2 z-50">
         <RouterLink to="/home">
           <div className="w-24 h-12 bg-wawa-red-600 rounded-b-full flex items-center justify-center pb-2 shadow-lg hover:bg-wawa-red-700 transition-colors">
@@ -21,6 +22,9 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
           </div>
         </RouterLink>
       </div>
+      
+      <BackButton />
+      <SettingsMenu />
       
       {/* Quick Access Menu Button */}
       <div className="fixed bottom-3 left-3 z-50">
@@ -45,15 +49,13 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
         </button>
       </div>
 
+      {/* Content area - inside ScaleWrapper */}
       <div className="min-h-screen bg-wawa-gray-50 relative">
-        {/* Main content */}
         <div className="pt-12">
-          <BackButton />
-          <SettingsMenu />
-          {children}
+          <ScaleWrapper>
+            {children}
+          </ScaleWrapper>
         </div>
-        
-        {/* Marketing Plan Dropdown */}
         <MarketingPlanDropdown />
         
         {/* Conditionally render TestPanel */}
