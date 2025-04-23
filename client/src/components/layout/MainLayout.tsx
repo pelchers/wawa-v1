@@ -3,6 +3,8 @@ import { Link as RouterLink } from 'react-router-dom';
 import MarketingPlanDropdown from '../navigation/MarketingPlanDropdown';
 import BackButton from '../navigation/BackButton';
 import SettingsMenu from '../navigation/SettingsMenu';
+import TestPanel from '../test/TestPanel';
+import { isFeatureEnabled } from '../../utils/featureToggles';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -53,6 +55,9 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
         
         {/* Marketing Plan Dropdown */}
         <MarketingPlanDropdown />
+        
+        {/* Conditionally render TestPanel */}
+        {isFeatureEnabled('showTestPanel') && <TestPanel />}
       </div>
     </>
   );

@@ -17,15 +17,22 @@ const SettingsMenu: FC<SettingsMenuProps> = ({
   // Use the authentication state from context if available, otherwise use the prop
   const isLoggedIn = isAuthenticated !== undefined ? isAuthenticated : propIsLoggedIn;
 
+  // Update pages to only include existing routes
   const pages = [
     { name: 'Home', path: '/' },
     { name: 'Marketing Plan', path: '/home' },
-    { name: 'Dashboard', path: '/dashboard' },
+    // Remove dashboard until it exists
+    // { name: 'Dashboard', path: '/dashboard' },
   ];
 
   const handleLogout = () => {
     logout();
     onLogout();
+    setIsOpen(false);
+  };
+
+  const handleNavigation = (pageName: string, path: string) => {
+    console.log(`Attempting to navigate to ${pageName} (${path})`);
     setIsOpen(false);
   };
 
@@ -78,7 +85,7 @@ const SettingsMenu: FC<SettingsMenuProps> = ({
                   to={page.path}
                   className="block px-4 py-2 text-sm text-wawa-gray-700 hover:bg-wawa-yellow-400 
                            hover:text-wawa-red-600 transition-all duration-200"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => handleNavigation(page.name, page.path)}
                 >
                   {page.name}
                 </Link>
@@ -94,7 +101,7 @@ const SettingsMenu: FC<SettingsMenuProps> = ({
                     to="/profile"
                     className="block px-4 py-2 text-sm text-wawa-gray-700 hover:bg-wawa-yellow-400 
                              hover:text-wawa-red-600 transition-all duration-200"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => handleNavigation('Profile', '/profile')}
                   >
                     Profile
                   </Link>
@@ -112,7 +119,7 @@ const SettingsMenu: FC<SettingsMenuProps> = ({
                     to="/login"
                     className="block px-4 py-2 text-sm text-wawa-gray-700 hover:bg-wawa-yellow-400 
                              hover:text-wawa-red-600 transition-all duration-200"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => handleNavigation('Login', '/login')}
                   >
                     Login
                   </Link>
@@ -120,7 +127,7 @@ const SettingsMenu: FC<SettingsMenuProps> = ({
                     to="/register"
                     className="block px-4 py-2 text-sm text-wawa-gray-700 hover:bg-wawa-yellow-400 
                              hover:text-wawa-red-600 transition-all duration-200"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => handleNavigation('Sign Up', '/register')}
                   >
                     Sign Up
                   </Link>
