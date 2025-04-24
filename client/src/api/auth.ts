@@ -3,6 +3,18 @@ import { LoginRequest, RegisterRequest, AuthResponse } from '../types/auth';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4100/api';
 
 /**
+ * Get authorization headers for authenticated requests
+ */
+export const getAuthHeaders = (): Record<string, string> => {
+  const token = localStorage.getItem('token');
+  if (!token) return {};
+  
+  return {
+    'Authorization': `Bearer ${token}`
+  };
+};
+
+/**
  * Register a new user
  */
 export const register = async (userData: RegisterRequest): Promise<AuthResponse> => {

@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 interface SettingsMenuProps {
@@ -103,11 +103,19 @@ const SettingsMenu: FC<SettingsMenuProps> = ({
                              hover:text-wawa-red-600 transition-all duration-200"
                     onClick={() => handleNavigation('Profile', '/profile')}
                   >
-                    Profile
+                    View Profile
+                  </Link>
+                  <Link
+                    to="/profile/edit"
+                    className="block px-4 py-2 text-sm text-wawa-gray-700 hover:bg-wawa-yellow-400 
+                             hover:text-wawa-red-600 transition-all duration-200"
+                    onClick={() => handleNavigation('Edit Profile', '/profile/edit')}
+                  >
+                    Edit Profile
                   </Link>
                   <button
-                    className="block px-4 py-2 text-sm text-wawa-gray-700 hover:bg-wawa-yellow-400 
-                             hover:text-wawa-red-600 transition-all duration-200 w-full text-left bg-transparent"
+                    className="block w-full text-left px-4 py-2 text-sm text-wawa-gray-700 
+                             hover:bg-wawa-yellow-400 hover:text-wawa-red-600 transition-all duration-200"
                     onClick={handleLogout}
                   >
                     Logout

@@ -6,6 +6,7 @@ import MainLayout from '../components/layout/MainLayout';
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import Profile from '../pages/auth/Profile';
+import ProfileEdit from '../pages/auth/ProfileEdit';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
 
 // Import section pages
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: <ProtectedRoute><MainLayout><Profile /></MainLayout></ProtectedRoute>,
+  },
+  {
+    path: '/profile/edit',
+    element: <ProtectedRoute><MainLayout><ProfileEdit /></MainLayout></ProtectedRoute>,
   },
   
   // Main routes with protection
