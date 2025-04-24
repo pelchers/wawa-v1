@@ -1,0 +1,149 @@
+# Minimalist Database Schema
+
+This schema represents a simplified version of our database with optional fields and minimal tables.
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Core User Model with all necessary fields as optional
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Basic Profile Information
+  firstName      String?
+  lastName       String?
+  jobTitle       String?
+  bio            String? @db.Text
+  yearsAtCompany Int?
+  yearsInDept    Int?
+  yearsInRole    Int?
+
+  // Company and Department Info
+  companyName    String?
+  companyRole    String?
+  departmentName String?
+
+  // Work Relationships
+  reportsToEmail String?
+  managerName    String?
+
+  // Education and Experience (as adaptable fields)
+  title           String?
+  institution     String?
+  years           Int?
+  references      String[]  // Array of text references
+  certifications  String[]  // Array of certification names
+  skills          String[]  // Array of skill names
+  achievements    String[]  // Array of achievements
+  publications    String[]  // Array of publications
+  
+  // Social and External Links
+  links String[]  // Array of link URLs
+
+  // Relations to activities
+  comments   Comment[]
+  questions  Question[]
+  likes      Like[]
+  approvals  Approval[]
+}
+
+// Marketing Plan Section enum for referencing parts of the marketing plan
+enum MarketingPlanSection {
+  FULL_PLAN            // Represents the entire marketing plan
+  EXECUTIVE_SUMMARY
+  MISSION_STATEMENT
+  MARKETING_OBJECTIVES
+  SWOT_ANALYSIS
+  MARKET_RESEARCH
+  MARKETING_STRATEGY
+  CHALLENGES_SOLUTIONS
+  EXECUTION
+  BUDGET
+  CONCLUSION
+  FEEDBACK
+  KEY_PERFORMANCE
+}
+
+// Comments related to marketing plan sections
+model Comment {
+  id        String               @id @default(uuid())
+  content   String               @db.Text
+  section   MarketingPlanSection
+  sectionId String?              // Optional field to reference specific item within a section
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+
+  // User relation
+  userId    String
+  user      User                 @relation(fields: [userId], references: [id])
+}
+
+// Questions related to marketing plan sections
+model Question {
+  id        String               @id @default(uuid())
+  content   String               @db.Text
+  answer    String?              @db.Text
+  section   MarketingPlanSection
+  sectionId String?              // Optional field to reference specific item within a section
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+
+  // User relation
+  userId    String
+  user      User                 @relation(fields: [userId], references: [id])
+}
+
+// Likes/reactions for marketing plan sections
+model Like {
+  id        String               @id @default(uuid())
+  reaction  String?              // Could be "like", "heart", etc.
+  section   MarketingPlanSection
+  sectionId String?              // Optional field to reference specific item within a section
+  createdAt DateTime             @default(now())
+
+  // User relation
+  userId    String
+  user      User                 @relation(fields: [userId], references: [id])
+
+  @@unique([userId, section, sectionId])  // A user can only like a specific section once
+}
+
+// Approvals for marketing plan sections
+model Approval {
+  id        String               @id @default(uuid())
+  status    String               // "approved", "rejected", "pending"
+  comments  String?              @db.Text
+  section   MarketingPlanSection
+  sectionId String?              // Optional field to reference specific item within a section
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+
+  // User relation
+  userId    String
+  user      User                 @relation(fields: [userId], references: [id])
+}
+```
+
+## Schema Migration Notes
+
+1. When migrating to this schema:
+   - Preserved all auth-related fields: `id`, `email`, `password`, `createdAt`, `updatedAt`
+   - Used simple, adaptable fields for user information rather than complex JSON structures
+   - Aligned section names exactly with those in the home.tsx file
+   - Used string arrays for multiple values rather than complex JSON
+
+2. This simplified schema reduces the number of tables while maintaining the ability to:
+   - Track users and their basic information
+   - Support comments, questions, likes, and approvals on specific marketing plan sections
+   - Store rich data in simple field formats while avoiding excessive table relations 
