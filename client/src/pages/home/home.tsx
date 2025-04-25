@@ -111,10 +111,11 @@ const Home = () => {
                 
                 <h3 className="font-wawaHeading text-xl font-semibold mt-6 mb-4">Our Vision</h3>
                 <p>
-                  To become the go-to brand for consumers seeking convenience, quality, and community. Our vision is to expand 
-                  Wawa's influence and brand culture across the country through our three-pronged approach of social media expansion, 
-                  content generation, and physical presence growth.
-                </p>
+                  To become the go-to brand for consumers seeking convenience, quality, and community through our 
+                  three strategic pillars: aggressive social media expansion and digital engagement, strategic 
+                  traditional media licensing with prominent cultural figures and brands with corporate event expansion (public exposure of events), and cost-effective 
+                  expansion into travel hubs and event centers nationwide.
+       </p>
               </div>
             </section>
           </div>
@@ -174,19 +175,25 @@ const Home = () => {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-white rounded-xl p-6">
-                  <h3 className="font-wawaHeading text-xl font-bold text-wawa-red-600 mb-4">Customer Growth</h3>
+                  <h3 className="font-wawaHeading text-xl font-bold text-wawa-red-600 mb-4">Digital Engagement</h3>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <span className="text-wawa-gray-700">Current</span>
-                      <span className="font-bold text-wawa-red-600">2.5M</span>
+                      <span className="font-bold text-wawa-red-600">Untracked</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-wawa-gray-700">Target</span>
-                      <span className="font-bold text-wawa-green-600">3.2M</span>
+                      <span className="font-bold text-wawa-green-600">Multi-Tier</span>
+                    </div>
+                    <div className="space-y-2 text-sm text-wawa-gray-600">
+                      <p>• 100 Premiere Partnerships</p>
+                      <p>• 100-150 Sublevel Partnerships</p>
+                      <p>• 250K+ followers per platform</p>
                     </div>
                     <div className="h-2 bg-wawa-gray-100 rounded-full">
-                      <div className="h-2 bg-wawa-red-500 rounded-full" style={{ width: '78%' }}></div>
+                      <div className="h-2 bg-wawa-red-500 rounded-full" style={{ width: '0%' }}></div>
                     </div>
+                    <p className="text-xs text-wawa-gray-500 italic">Starting fresh with structured tracking</p>
                   </div>
                 </div>
 
@@ -195,32 +202,63 @@ const Home = () => {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <span className="text-wawa-gray-700">Current</span>
-                      <span className="font-bold text-wawa-red-600">15%</span>
+                      <span className="font-bold text-wawa-red-600">0%</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-wawa-gray-700">Target</span>
-                      <span className="font-bold text-wawa-green-600">25%</span>
+                      <span className="font-bold text-wawa-green-600">10%+</span>
+                    </div>
+                    <div className="space-y-2 text-sm text-wawa-gray-600">
+                      <p className="font-semibold">Goal: Exceed current fast food brand penetration in new markets</p>
                     </div>
                     <div className="h-2 bg-wawa-gray-100 rounded-full">
-                      <div className="h-2 bg-wawa-red-500 rounded-full" style={{ width: '60%' }}></div>
+                      <div className="h-2 bg-wawa-red-500 rounded-full" style={{ width: '0%' }}></div>
                     </div>
+                    <p className="text-xs text-wawa-gray-500 italic">New market entry strategy</p>
                   </div>
                 </div>
 
                 <div className="bg-white rounded-xl p-6">
-                  <h3 className="font-wawaHeading text-xl font-bold text-wawa-red-600 mb-4">Digital Engagement</h3>
+                  <h3 className="font-wawaHeading text-xl font-bold text-wawa-red-600 mb-4">Brand Impact</h3>
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-wawa-gray-700">Current</span>
-                      <span className="font-bold text-wawa-red-600">500K</span>
+                    <div className="bg-wawa-yellow-50 p-3 rounded-lg">
+                      <p className="text-sm text-wawa-gray-700 font-semibold mb-2">Strategic Focus Note:</p>
+                      <p className="text-sm text-wawa-gray-600">Prioritizing brand loyalty and awareness over immediate customer growth, leveraging low-cost approach across:</p>
+                      <ul className="list-disc pl-4 mt-2 text-sm text-wawa-gray-600">
+                        <li>Social media expansion</li>
+                        <li>Strategic media licensing</li>
+                        <li>Travel hub presence</li>
+                      </ul>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-wawa-gray-700">Target</span>
-                      <span className="font-bold text-wawa-green-600">1.2M</span>
+                    <div className="text-sm text-wawa-gray-600 mt-2">
+                      <p className="font-semibold">Cost-Efficient Strategy:</p>
+                      <p>Low overhead approach enables focused brand building without pressure for immediate customer acquisition</p>
                     </div>
-                    <div className="h-2 bg-wawa-gray-100 rounded-full">
-                      <div className="h-2 bg-wawa-red-500 rounded-full" style={{ width: '42%' }}></div>
-                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Additional Performance Context */}
+              <div className="bg-white rounded-xl p-6 mt-6">
+                <h3 className="font-wawaHeading text-xl font-bold text-wawa-red-600 mb-4">Performance Strategy Context</h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800 mb-2">Digital Engagement Breakdown</h4>
+                    <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
+                      <li className="mb-2">Premiere partnerships focus on major influencers and cultural figures</li>
+                      <li className="mb-2">Sublevel partnerships target niche market segments</li>
+                      <li className="mb-2">Platform-specific content strategies for organic growth</li>
+                      <li className="mb-2">Cross-platform engagement tracking and optimization</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800 mb-2">Market Entry Approach</h4>
+                    <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
+                      <li className="mb-2">Focus on brand recognition before expansion</li>
+                      <li className="mb-2">Strategic positioning against established brands</li>
+                      <li className="mb-2">Leveraging high-traffic, low-cost locations</li>
+                      <li className="mb-2">Building foundation for future growth</li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -395,27 +433,27 @@ const Home = () => {
                 <div className="bg-white rounded-xl p-6">
                   <h4 className="font-wawaHeading text-lg font-semibold text-wawa-yellow-700 mb-2">Short-term</h4>
                   <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
-                    <li className="mb-2">Increase app downloads by 25%</li>
-                    <li className="mb-2">Launch 5 new healthy menu items</li>
-                    <li className="mb-2">Boost social media engagement by 30%</li>
+                    <li className="mb-2">Launch segmented influencer campaigns</li>
+                    <li className="mb-2">Establish market-specific metrics tracking</li>
+                    <li className="mb-2">Test regional product variations</li>
                   </ul>
                 </div>
                 
                 <div className="bg-white rounded-xl p-6">
                   <h4 className="font-wawaHeading text-lg font-semibold text-wawa-yellow-700 mb-2">Mid-term</h4>
                   <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
-                    <li className="mb-2">Open 25 new stores in existing markets</li>
-                    <li className="mb-2">Achieve 40% mobile order penetration</li>
-                    <li className="mb-2">Reduce environmental footprint by 15%</li>
+                    <li className="mb-2">Optimize location-specific offerings</li>
+                    <li className="mb-2">Scale successful market adaptations</li>
+                    <li className="mb-2">Refine cross-channel tracking</li>
                   </ul>
                 </div>
                 
                 <div className="bg-white rounded-xl p-6">
                   <h4 className="font-wawaHeading text-lg font-semibold text-wawa-yellow-700 mb-2">Long-term</h4>
                   <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
-                    <li className="mb-2">Expand to 3 new states</li>
-                    <li className="mb-2">Achieve carbon neutrality</li>
-                    <li className="mb-2">Become #1 in customer satisfaction</li>
+                    <li className="mb-2">Data-driven expansion strategy</li>
+                    <li className="mb-2">Market-optimized product lines</li>
+                    <li className="mb-2">Integrated performance analytics</li>
                   </ul>
                 </div>
               </div>
@@ -423,24 +461,24 @@ const Home = () => {
               {/* Marketing Channels */}
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div className="bg-white rounded-xl p-6">
-                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800 mb-2">Digital</h4>
+                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800 mb-2">Digital Presence</h4>
                   <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
-                    <li className="mb-2">Mobile app with personalized offers</li>
-                    <li className="mb-2">Social media campaigns (Instagram, Facebook, Twitter)</li>
-                    <li className="mb-2">Targeted email marketing</li>
-                    <li className="mb-2">Geofenced mobile advertising</li>
-                    <li className="mb-2">Influencer partnerships</li>
+                    <li className="mb-2">Market-segmented social campaigns</li>
+                    <li className="mb-2">Regional influencer partnerships</li>
+                    <li className="mb-2">Location-based digital content</li>
+                    <li className="mb-2">Targeted community initiatives</li>
+                    <li className="mb-2">Performance tracking by segment</li>
                   </ul>
                 </div>
                 
                 <div className="bg-white rounded-xl p-6">
-                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800 mb-2">Traditional</h4>
+                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800 mb-2">Traditional Media</h4>
                   <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
-                    <li className="mb-2">In-store promotions and signage</li>
-                    <li className="mb-2">Local radio and billboard advertising</li>
-                    <li className="mb-2">Community event sponsorships</li>
-                    <li className="mb-2">Public relations campaigns</li>
-                    <li className="mb-2">Direct mail in new markets</li>
+                    <li className="mb-2">Market-aligned celebrity partnerships</li>
+                    <li className="mb-2">Regional entertainment collaborations</li>
+                    <li className="mb-2">Local cultural integration</li>
+                    <li className="mb-2">Cross-market brand tracking</li>
+                    <li className="mb-2">ROI analysis by region</li>
                   </ul>
                 </div>
               </div>
@@ -454,25 +492,25 @@ const Home = () => {
                     <div className="relative">
                       <div className="absolute -left-12 top-1 w-6 h-6 rounded-full bg-wawa-yellow-500"></div>
                       <h4 className="text-wawa-lg font-wawaHeading font-semibold text-wawa-yellow-700">Q1 2023</h4>
-                      <p className="text-wawa-base font-wawa text-wawa-gray-700">Launch mobile app enhancements and loyalty program updates</p>
+                      <p className="text-wawa-base font-wawa text-wawa-gray-700">Launch influencer partnership program and social media campaign</p>
                     </div>
                     
                     <div className="relative">
                       <div className="absolute -left-12 top-1 w-6 h-6 rounded-full bg-wawa-yellow-500"></div>
                       <h4 className="text-wawa-lg font-wawaHeading font-semibold text-wawa-yellow-700">Q2 2023</h4>
-                      <p className="text-wawa-base font-wawa text-wawa-gray-700">Introduce new healthy menu items and sustainability initiatives</p>
+                      <p className="text-wawa-base font-wawa text-wawa-gray-700">Secure first major entertainment industry partnership and begin airport location rollout</p>
                     </div>
                     
                     <div className="relative">
                       <div className="absolute -left-12 top-1 w-6 h-6 rounded-full bg-wawa-yellow-500"></div>
                       <h4 className="text-wawa-lg font-wawaHeading font-semibold text-wawa-yellow-700">Q3 2023</h4>
-                      <p className="text-wawa-base font-wawa text-wawa-gray-700">Begin expansion into new markets with targeted campaigns</p>
+                      <p className="text-wawa-base font-wawa text-wawa-gray-700">Launch celebrity ambassador program and expand travel hub presence</p>
                     </div>
                     
                     <div className="relative">
                       <div className="absolute -left-12 top-1 w-6 h-6 rounded-full bg-wawa-yellow-500"></div>
                       <h4 className="text-wawa-lg font-wawaHeading font-semibold text-wawa-yellow-700">Q4 2023</h4>
-                      <p className="text-wawa-base font-wawa text-wawa-gray-700">Holiday promotions and community giving initiatives</p>
+                      <p className="text-wawa-base font-wawa text-wawa-gray-700">Major entertainment event sponsorships and digital community expansion</p>
                     </div>
                   </div>
                 </div>
@@ -725,33 +763,33 @@ const Home = () => {
                     <tbody className="divide-y divide-wawa-gray-200">
                       <tr>
                         <td className="py-3 px-4 font-medium">Digital Marketing</td>
-                        <td className="py-3 px-4">35%</td>
-                        <td className="py-3 px-4">$3,500,000</td>
-                        <td className="py-3 px-4">Social media, app development, online ads</td>
+                        <td className="py-3 px-4">30%</td>
+                        <td className="py-3 px-4">$3,000,000</td>
+                        <td className="py-3 px-4">Social media campaigns, influencer partnerships, segmented digital content by market</td>
                       </tr>
                       <tr>
-                        <td className="py-3 px-4 font-medium">Traditional Advertising</td>
+                        <td className="py-3 px-4 font-medium">Media Licensing</td>
                         <td className="py-3 px-4">25%</td>
                         <td className="py-3 px-4">$2,500,000</td>
-                        <td className="py-3 px-4">Radio, billboards, print media</td>
+                        <td className="py-3 px-4">Celebrity partnerships, TV/movie licensing, market-specific entertainment collaborations</td>
                       </tr>
                       <tr>
-                        <td className="py-3 px-4 font-medium">Product Development</td>
+                        <td className="py-3 px-4 font-medium">Location & Product Development</td>
                         <td className="py-3 px-4">20%</td>
                         <td className="py-3 px-4">$2,000,000</td>
-                        <td className="py-3 px-4">New menu items, packaging</td>
+                        <td className="py-3 px-4">Market-specific menu development, airport/event center adaptations, regional product testing</td>
                       </tr>
                       <tr>
-                        <td className="py-3 px-4 font-medium">Community Engagement</td>
+                        <td className="py-3 px-4 font-medium">Market Analysis & Metrics</td>
                         <td className="py-3 px-4">15%</td>
                         <td className="py-3 px-4">$1,500,000</td>
-                        <td className="py-3 px-4">Sponsorships, events, charitable initiatives</td>
+                        <td className="py-3 px-4">Cross-channel performance tracking, market viability studies, expansion metrics analysis</td>
                       </tr>
                       <tr>
-                        <td className="py-3 px-4 font-medium">Research & Analytics</td>
-                        <td className="py-3 px-4">5%</td>
-                        <td className="py-3 px-4">$500,000</td>
-                        <td className="py-3 px-4">Market research, performance tracking</td>
+                        <td className="py-3 px-4 font-medium">Contingency</td>
+                        <td className="py-3 px-4">10%</td>
+                        <td className="py-3 px-4">$1,000,000</td>
+                        <td className="py-3 px-4">Rapid response to market opportunities, emergency funds</td>
                       </tr>
                       <tr className="bg-wawa-yellow-50 font-medium">
                         <td className="py-3 px-4">Total</td>
@@ -764,19 +802,78 @@ const Home = () => {
                 </div>
               </div>
 
+              {/* Market Metrics - Updated Section */}
+              <div className="grid md:grid-cols-3 gap-4 mb-6 mt-8">
+                <div className="bg-white rounded-xl p-6">
+                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">Digital Metrics</h4>
+                  <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
+                    <li className="mb-2">Social engagement by market segment</li>
+                    <li className="mb-2">Influencer campaign ROI tracking</li>
+                    <li className="mb-2">Digital content performance by region</li>
+                    <li className="mb-2">Community growth metrics by platform</li>
+                  </ul>
+                </div>
+                <div className="bg-white rounded-xl p-6">
+                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-yellow-600 mb-2">Traditional Media Impact</h4>
+                  <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
+                    <li className="mb-2">Celebrity partnership performance</li>
+                    <li className="mb-2">Entertainment placement effectiveness</li>
+                    <li className="mb-2">Brand recognition lift by market</li>
+                    <li className="mb-2">Cross-promotion conversion rates</li>
+                  </ul>
+                </div>
+                <div className="bg-white rounded-xl p-6">
+                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-green-600 mb-2">Location Performance</h4>
+                  <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
+                    <li className="mb-2">Product mix success by location</li>
+                    <li className="mb-2">Regional menu adaptation metrics</li>
+                    <li className="mb-2">Travel hub vs event center analytics</li>
+                    <li className="mb-2">Market expansion viability scores</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Strategic Implementation */}
+              <div className="bg-white rounded-xl p-6 mt-6">
+                <h3 className="font-wawaHeading text-xl font-bold text-wawa-red-600 mb-4">Market-Specific Implementation</h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800 mb-2">Product Development Strategy</h4>
+                    <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
+                      <li className="mb-2">Airport-specific menu optimization</li>
+                      <li className="mb-2">Event center product variations</li>
+                      <li className="mb-2">Regional taste preference adaptation</li>
+                      <li className="mb-2">Travel-friendly packaging solutions</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800 mb-2">Market Analysis Teams</h4>
+                    <ul className="list-disc pl-6 text-wawa-base font-wawa text-wawa-gray-700">
+                      <li className="mb-2">Digital performance tracking team</li>
+                      <li className="mb-2">Traditional media impact analysts</li>
+                      <li className="mb-2">Location viability researchers</li>
+                      <li className="mb-2">Cross-channel metrics coordinators</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
               {/* ROI Metrics */}
               <div className="grid md:grid-cols-3 gap-4 mb-6">
                 <div className="bg-white rounded-xl p-6 text-center">
                   <p className="text-3xl font-wawaHeading font-bold text-wawa-yellow-600">3.5x</p>
-                  <p className="text-sm font-wawa text-wawa-gray-700">Expected ROI</p>
+                  <p className="text-sm font-wawa text-wawa-gray-700">Brand Recognition ROI</p>
+                  <p className="text-xs text-wawa-gray-500 mt-2">Based on media value vs. spend</p>
                 </div>
                 <div className="bg-white rounded-xl p-6 text-center">
-                  <p className="text-3xl font-wawaHeading font-bold text-wawa-yellow-600">18%</p>
-                  <p className="text-sm font-wawa text-wawa-gray-700">Revenue Growth</p>
+                  <p className="text-3xl font-wawaHeading font-bold text-wawa-yellow-600">85%</p>
+                  <p className="text-sm font-wawa text-wawa-gray-700">Brand Awareness Target</p>
+                  <p className="text-xs text-wawa-gray-500 mt-2">In new market segments</p>
                 </div>
                 <div className="bg-white rounded-xl p-6 text-center">
-                  <p className="text-3xl font-wawaHeading font-bold text-wawa-yellow-600">22%</p>
-                  <p className="text-sm font-wawa text-wawa-gray-700">Customer Growth</p>
+                  <p className="text-3xl font-wawaHeading font-bold text-wawa-yellow-600">80%</p>
+                  <p className="text-sm font-wawa text-wawa-gray-700">Cost Reduction</p>
+                  <p className="text-xs text-wawa-gray-500 mt-2">Vs. traditional expansion</p>
                 </div>
               </div>
 
@@ -819,32 +916,32 @@ const Home = () => {
               <div className="bg-white rounded-xl p-6 mb-6">
                 <h3 className="font-wawaHeading text-xl font-bold text-wawa-red-600 mb-4">Summary</h3>
                 <p className="text-wawa-base font-wawa text-wawa-gray-700 mb-6">
-                  This marketing plan outlines a comprehensive strategy to strengthen Wawa's market position, 
-                  expand into new territories, and enhance our digital capabilities while maintaining our 
-                  commitment to quality, community, and customer service. By focusing on our core strengths 
-                  and addressing our challenges head-on, we are positioned to achieve significant growth and 
-                  build lasting customer relationships.
+                  This marketing plan presents a bold strategy focused on three key pillars: aggressive social media 
+                  expansion to build digital engagement, strategic traditional media licensing with major cultural 
+                  figures and entertainment properties, and cost-effective physical expansion through travel hubs 
+                  and event centers. By leveraging these channels while maintaining our commitment to quality and 
+                  service, we are positioned to achieve nationwide brand recognition and significant market growth.
                 </p>
               </div>
 
               {/* Key Takeaways */}
               <div className="grid md:grid-cols-3 gap-4 mb-6">
                 <div className="bg-white rounded-xl p-6">
-                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">Customer Focus</h4>
+                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">Social Media Expansion</h4>
                   <p className="text-sm font-wawa text-wawa-gray-700">
-                    Our success depends on understanding and meeting evolving customer needs with quality products and exceptional service.
+                    Aggressive growth in digital presence through targeted social media campaigns and enhanced online engagement strategies.
                   </p>
                 </div>
                 <div className="bg-white rounded-xl p-6">
-                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-yellow-600 mb-2">Digital Transformation</h4>
+                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-yellow-600 mb-2">Traditional Media & Events</h4>
                   <p className="text-sm font-wawa text-wawa-gray-700">
-                    Enhancing our digital capabilities will drive growth, improve customer experience, and create competitive advantage.
+                    Strategic investment in traditional advertising channels and major event sponsorships to strengthen brand visibility and community connections.
                   </p>
                 </div>
                 <div className="bg-white rounded-xl p-6">
-                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-green-600 mb-2">Community Connection</h4>
+                  <h4 className="font-wawaHeading text-lg font-semibold text-wawa-green-600 mb-2">Strategic Location Expansion</h4>
                   <p className="text-sm font-wawa text-wawa-gray-700">
-                    Our commitment to community involvement strengthens our brand and creates loyal customers.
+                    Testing low-cost expansion opportunities in airports, travel hubs, and event centers to maximize market penetration with minimal investment.
                   </p>
                 </div>
               </div>
