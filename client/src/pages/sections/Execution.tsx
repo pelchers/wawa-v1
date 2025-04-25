@@ -17,9 +17,10 @@ const Execution: FC = () => {
       <div className="prose prose-lg max-w-none">
         <h3 className="font-wawaHeading text-xl font-semibold mb-6">Implementation Plan</h3>
         <p className="mb-8">
-          Our execution strategy follows a phased approach to ensure systematic implementation, allowing for 
-          testing, learning, and optimization at each stage. This approach maximizes resource efficiency and 
-          enables us to build on successes while quickly addressing any challenges that arise.
+          Our execution strategy follows a phased approach to ensure systematic implementation (i.e., quarterly milestones, 
+          cross-functional team coordination), allowing for testing, learning, and optimization at each stage 
+          (i.e., A/B testing of digital campaigns, location performance analysis). This approach maximizes resource 
+          efficiency and enables us to build on successes while quickly addressing any challenges that arise.
         </p>
         
         {/* Process Steps */}
@@ -407,6 +408,72 @@ const Execution: FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Implementation Examples Section */}
+        <section className="implementation-examples mt-8 bg-wawa-gray-50 rounded-xl p-6">
+          <h3 className="font-wawaHeading text-xl font-semibold text-wawa-red-600 mb-4">
+            Implementation Examples
+          </h3>
+          
+          <div className="space-y-6">
+            {/* Project Management Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Cross-Functional Project Management System
+              </h4>
+              <p className="text-wawa-gray-700">
+                Implementation of an integrated project management framework:
+                Team Structure (i.e., marketing, operations, and technology pods),
+                Communication Protocols (i.e., daily standups, weekly cross-team syncs),
+                Resource Allocation (i.e., dynamic team assignment based on project needs),
+                Progress Tracking (i.e., real-time dashboard with key metrics).
+                System includes automated reporting and escalation protocols.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 40% improvement in project completion rates,
+                30% reduction in resource conflicts, 25% faster decision-making process.
+              </div>
+            </div>
+
+            {/* Timeline Management Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Phased Implementation Timeline
+              </h4>
+              <p className="text-wawa-gray-700">
+                Development of a comprehensive timeline management system:
+                Phase Gates (i.e., clear criteria for moving between phases),
+                Risk Management (i.e., early warning indicators and mitigation plans),
+                Resource Scheduling (i.e., just-in-time resource allocation),
+                Performance Monitoring (i.e., milestone tracking and adjustment protocols).
+                System includes contingency buffers and acceleration options.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 35% reduction in timeline delays,
+                45% improvement in resource utilization, 30% better risk prediction accuracy.
+              </div>
+            </div>
+
+            {/* Quality Assurance Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Implementation Quality Control
+              </h4>
+              <p className="text-wawa-gray-700">
+                Creation of a multi-layer quality assurance system:
+                Execution Standards (i.e., detailed checklists for each phase),
+                Review Protocols (i.e., peer review process for deliverables),
+                Performance Metrics (i.e., quality scoring system),
+                Feedback Loops (i.e., continuous improvement mechanisms).
+                System includes automated quality monitoring and reporting.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 50% reduction in implementation errors,
+                40% improvement in first-time-right rate, 35% faster issue resolution.
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </SectionPage>
   );

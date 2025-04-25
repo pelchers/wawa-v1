@@ -18,9 +18,9 @@ const MarketingStrategy: FC = () => {
         <h3 className="font-wawaHeading text-xl font-semibold mb-6">Strategic Approach</h3>
         <p className="mb-8">
           Our marketing strategy is built on three cost-efficient pillars: aggressive social media expansion with 
-          targeted partnerships, strategic traditional media licensing with prominent cultural figures and brands, 
-          and selective physical presence through travel hubs and event centers. This approach prioritizes brand 
-          awareness and loyalty over immediate customer growth.
+          targeted partnerships (i.e., food influencers with 100k+ followers), strategic traditional media licensing 
+          with prominent cultural figures and brands (i.e., regional sports team partnerships), and selective physical 
+          presence through travel hubs and event centers (i.e., premium airport terminal locations).
         </p>
         
         {/* Strategy Pillars */}
@@ -240,6 +240,69 @@ const MarketingStrategy: FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Implementation Examples Section */}
+        <section className="implementation-examples mt-8 bg-wawa-gray-50 rounded-xl p-6">
+          <h3 className="font-wawaHeading text-xl font-semibold text-wawa-red-600 mb-4">
+            Implementation Examples
+          </h3>
+          
+          <div className="space-y-6">
+            {/* Partnerships & Collaborations Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Tiered Influencer Partnership Program
+              </h4>
+              <p className="text-wawa-gray-700">
+                Implementation of a structured three-tier influencer partnership system:
+                Tier 1 (i.e., macro-influencers with 500k+ followers, exclusive menu item collaborations),
+                Tier 2 (i.e., mid-tier food bloggers with 100k-500k followers, featured reviews and content),
+                Tier 3 (i.e., micro-influencers with 50k-100k followers, local market engagement).
+                Each tier includes custom content guidelines, performance metrics, and engagement requirements.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 200% increase in social media engagement,
+                45% boost in brand awareness in target markets, 30% reduction in customer acquisition costs.
+              </div>
+            </div>
+
+            {/* Media & Content Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Entertainment Integration Campaign
+              </h4>
+              <p className="text-wawa-gray-700">
+                Development of a multi-channel entertainment integration strategy combining:
+                Sports partnerships (i.e., official food partner of regional sports teams),
+                TV show product placements (i.e., featured in popular travel/food shows),
+                Movie tie-ins (i.e., branded concessions at premiere events).
+                Implementation includes co-branded merchandise, exclusive menu items, and joint promotional events.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 150% increase in brand visibility,
+                40% improvement in brand association scores, 25% growth in merchandise sales.
+              </div>
+            </div>
+
+            {/* Strategic Implementation Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Travel Hub Expansion Model
+              </h4>
+              <p className="text-wawa-gray-700">
+                Creation of a phased travel hub expansion strategy:
+                Phase 1 (i.e., premium airport terminal locations with high foot traffic),
+                Phase 2 (i.e., major transportation centers near business districts),
+                Phase 3 (i.e., event centers and sports venues).
+                Each phase includes location-specific menu adaptations, staffing models, and operational procedures.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 80% reduction in market entry costs,
+                35% higher average transaction value, 50% faster market penetration rate.
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </SectionPage>
   );

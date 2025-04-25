@@ -17,9 +17,10 @@ const ChallengesSolutions: FC = () => {
       <div className="prose prose-lg max-w-none">
         <h3 className="font-wawaHeading text-xl font-semibold mb-6">Strategic Challenges</h3>
         <p className="mb-8">
-          As we implement our marketing strategy, we anticipate several key challenges that could impact our success. 
-          We've developed proactive solutions to address each challenge, ensuring we can adapt and thrive in a 
-          competitive landscape.
+          As we implement our marketing strategy, we anticipate several key challenges that could impact our success 
+          (i.e., brand recognition gaps in new markets, competitive pressures from established chains). We've developed 
+          proactive solutions to address each challenge (i.e., phased market entry approach, differentiated value proposition), 
+          ensuring we can adapt and thrive in a competitive landscape.
         </p>
         
         <div className="space-y-8 mb-12">
@@ -184,6 +185,71 @@ const ChallengesSolutions: FC = () => {
             </div>
           </div>
         </div>
+        
+        {/* Implementation Examples Section */}
+        <section className="implementation-examples mt-8 bg-wawa-gray-50 rounded-xl p-6">
+          <h3 className="font-wawaHeading text-xl font-semibold text-wawa-red-600 mb-4">
+            Implementation Examples
+          </h3>
+          
+          <div className="space-y-6">
+            {/* Brand Recognition Challenge Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Market Entry Awareness Campaign
+              </h4>
+              <p className="text-wawa-gray-700">
+                Implementation of a multi-phase market entry awareness program:
+                Phase 1 - Digital Presence (i.e., geo-targeted social media campaigns, local influencer partnerships),
+                Phase 2 - Community Integration (i.e., local event sponsorships, charity partnerships),
+                Phase 3 - Physical Launch (i.e., grand opening events, local media coverage).
+                Each phase includes specific KPIs and adjustment triggers based on market response.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 75% brand awareness in new markets within 6 months,
+                40% increase in opening day foot traffic, 25% higher customer retention rates.
+              </div>
+            </div>
+
+            {/* Competitive Challenge Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Competitive Differentiation Program
+              </h4>
+              <p className="text-wawa-gray-700">
+                Development of a comprehensive differentiation strategy:
+                Product Innovation (i.e., exclusive menu items not available at competitors),
+                Service Enhancement (i.e., proprietary ordering system for faster service),
+                Customer Experience (i.e., unique store layout and ambiance),
+                Local Integration (i.e., region-specific products and partnerships).
+                Implementation includes staff training programs and customer feedback systems.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 45% higher customer satisfaction scores,
+                30% improvement in repeat visit rates, 25% increase in average ticket size.
+              </div>
+            </div>
+
+            {/* Consumer Preferences Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Consumer Trends Adaptation System
+              </h4>
+              <p className="text-wawa-gray-700">
+                Creation of an agile consumer preferences response system:
+                Trend Monitoring (i.e., real-time social media sentiment analysis),
+                Menu Evolution (i.e., quarterly menu updates based on trend data),
+                Digital Integration (i.e., mobile app features aligned with user preferences),
+                Sustainability Initiatives (i.e., eco-friendly packaging options).
+                System includes rapid testing protocols and feedback loops.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 50% faster new product introduction cycle,
+                35% increase in mobile app engagement, 40% improvement in sustainability metrics.
+              </div>
+            </div>
+          </div>
+        </section>
         
         {/* Risk Management */}
         <h3 className="font-wawaHeading text-xl font-semibold mb-4">Risk Management Framework</h3>

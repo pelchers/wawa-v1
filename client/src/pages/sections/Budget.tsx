@@ -15,9 +15,14 @@ const Budget: FC = () => {
       }}
     >
       <div className="prose prose-lg max-w-none">
-        {/* Strategic Overview */}
+        {/* Strategic Overview - Updated with inline examples */}
         <div className="bg-wawa-red-50 rounded-xl p-6 mb-8">
           <h3 className="font-wawaHeading text-xl font-semibold text-wawa-red-600 mb-4">Strategic Investment Approach</h3>
+          <p className="mb-4">
+            Our budget allocation prioritizes high-impact, cost-efficient initiatives (i.e., digital partnerships over 
+            traditional advertising, strategic licensing over owned locations) while maintaining flexibility for market 
+            opportunities (i.e., contingency fund for emerging partnerships, rapid response capabilities).
+          </p>
           <div className="grid md:grid-cols-3 gap-4">
             <div className="bg-white rounded-lg p-4">
               <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">Digital Engagement</h4>
@@ -262,6 +267,72 @@ const Budget: FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Implementation Examples Section */}
+        <section className="implementation-examples mt-8 bg-wawa-gray-50 rounded-xl p-6">
+          <h3 className="font-wawaHeading text-xl font-semibold text-wawa-red-600 mb-4">
+            Implementation Examples
+          </h3>
+          
+          <div className="space-y-6">
+            {/* Budget Optimization Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Dynamic Budget Allocation System
+              </h4>
+              <p className="text-wawa-gray-700">
+                Implementation of an AI-driven budget optimization system:
+                Performance Tracking (i.e., real-time ROI monitoring by channel),
+                Automated Reallocation (i.e., shifting funds to high-performing initiatives),
+                Predictive Modeling (i.e., forecasting budget needs by quarter),
+                Risk Management (i.e., maintaining optimal contingency levels).
+                System includes monthly rebalancing and quarterly strategic reviews.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 30% improvement in marketing ROI,
+                25% reduction in underutilized funds, 40% better budget forecasting accuracy.
+              </div>
+            </div>
+
+            {/* Cost Control Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Strategic Cost Management Program
+              </h4>
+              <p className="text-wawa-gray-700">
+                Development of a comprehensive cost control framework:
+                Partnership Optimization (i.e., volume-based pricing tiers),
+                Resource Sharing (i.e., cross-campaign asset utilization),
+                Vendor Management (i.e., preferred partner program),
+                Efficiency Metrics (i.e., cost-per-impact tracking).
+                Program includes automated cost monitoring and variance alerts.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 35% reduction in operational costs,
+                45% improvement in resource utilization, 20% better vendor pricing.
+              </div>
+            </div>
+
+            {/* Investment Planning Example */}
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
+                Example: Strategic Investment Framework
+              </h4>
+              <p className="text-wawa-gray-700">
+                Creation of a data-driven investment planning system:
+                Market Analysis (i.e., opportunity scoring model),
+                ROI Projection (i.e., multi-scenario financial modeling),
+                Risk Assessment (i.e., investment risk rating system),
+                Performance Tracking (i.e., investment outcome monitoring).
+                Framework includes quarterly review and adjustment cycles.
+              </p>
+              <div className="mt-4 text-sm text-wawa-gray-600">
+                <strong>Expected Results:</strong> 50% better investment success rate,
+                40% improvement in capital efficiency, 30% faster investment decisions.
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </SectionPage>
   );
