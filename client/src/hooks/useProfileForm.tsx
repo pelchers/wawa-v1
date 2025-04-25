@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Profile, UpdateProfileRequest } from '../types/profile';
 import { updateProfile } from '../api/profile';
-import { useAuth } from './useAuth';
+import { useAuth } from '../contexts/AuthContext';
 
 export const useProfileForm = (profile: Profile, onSuccess: (updatedProfile: Profile) => void) => {
   const [formData, setFormData] = useState<UpdateProfileRequest>({
@@ -31,7 +31,7 @@ export const useProfileForm = (profile: Profile, onSuccess: (updatedProfile: Pro
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { token } = useAuth();
+  const { token, isAuthenticated } = useAuth();
 
   // Handle text input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -65,6 +65,11 @@ export const useProfileForm = (profile: Profile, onSuccess: (updatedProfile: Pro
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!isAuthenticated || !token) {
+      setError('You must be authenticated to update your profile');
+      return;
+    }
+
     try {
       setLoading(true);
       setError(null);
@@ -74,7 +79,7 @@ export const useProfileForm = (profile: Profile, onSuccess: (updatedProfile: Pro
       if (response.success && response.profile) {
         onSuccess(response.profile);
       } else {
-        setError(response.message);
+        setError(response.message || 'Failed to update profile');
       }
     } catch (err) {
       setError('Failed to update profile');
