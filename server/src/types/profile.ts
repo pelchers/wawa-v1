@@ -17,12 +17,18 @@ export interface ProfileData {
   title?: string;
   institution?: string;
   years?: number;
-  references: string[];
-  certifications: string[];
-  skills: string[];
-  achievements: string[];
-  publications: string[];
-  links: string[];
-  createdAt: Date;
-  updatedAt: Date;
+  references?: string[];
+  certifications?: string[];
+  skills?: string[];
+  achievements?: string[];
+  publications?: string[];
+  links?: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ProfileResponse {
+  success: boolean;
+  message: string;
+  profile?: ProfileData;
 } 

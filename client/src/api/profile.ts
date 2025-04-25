@@ -15,9 +15,14 @@ export const getProfile = async (token: string): Promise<ProfileResponse> => {
       },
     });
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const data = await response.json();
     return data;
   } catch (error) {
+    console.error('Profile fetch error:', error);
     return {
       success: false,
       message: error instanceof Error ? error.message : 'Failed to fetch profile',
@@ -39,9 +44,14 @@ export const updateProfile = async (token: string, profileData: UpdateProfileReq
       body: JSON.stringify(profileData),
     });
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const data = await response.json();
     return data;
   } catch (error) {
+    console.error('Profile update error:', error);
     return {
       success: false,
       message: error instanceof Error ? error.message : 'Failed to update profile',

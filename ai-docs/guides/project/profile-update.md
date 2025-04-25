@@ -80,14 +80,20 @@ export interface ProfileData {
   title?: string;
   institution?: string;
   years?: number;
-  references: string[];
-  certifications: string[];
-  skills: string[];
-  achievements: string[];
-  publications: string[];
-  links: string[];
-  createdAt: Date;
-  updatedAt: Date;
+  references?: string[];
+  certifications?: string[];
+  skills?: string[];
+  achievements?: string[];
+  publications?: string[];
+  links?: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ProfileResponse {
+  success: boolean;
+  message: string;
+  profile?: ProfileData;
 }
 
 // server/src/types/requests.ts
@@ -150,7 +156,6 @@ export interface Profile {
   updatedAt: string;
 }
 
-// client/src/api/profile.ts
 export interface ProfileResponse {
   success: boolean;
   message: string;
@@ -189,7 +194,9 @@ export interface UpdateProfileRequest {
 
 ```typescript
 // client/src/api/profile.ts
-import { Profile, ProfileResponse, UpdateProfileRequest } from '../types/profile';
+import { ProfileResponse, UpdateProfileRequest } from '../types/profile';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4100/api';
 
 /**
  * Get the current user's profile
@@ -204,9 +211,14 @@ export const getProfile = async (token: string): Promise<ProfileResponse> => {
       },
     });
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const data = await response.json();
     return data;
   } catch (error) {
+    console.error('Profile fetch error:', error);
     return {
       success: false,
       message: error instanceof Error ? error.message : 'Failed to fetch profile',
@@ -228,9 +240,14 @@ export const updateProfile = async (token: string, profileData: UpdateProfileReq
       body: JSON.stringify(profileData),
     });
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const data = await response.json();
     return data;
   } catch (error) {
+    console.error('Profile update error:', error);
     return {
       success: false,
       message: error instanceof Error ? error.message : 'Failed to update profile',
@@ -243,17 +260,17 @@ export const updateProfile = async (token: string, profileData: UpdateProfileReq
 
 ```typescript
 // server/src/routes/profileRoutes.ts
-import express from 'express';
+import express, { Router } from 'express';
 import { getProfile, updateProfile } from '../controllers/profileController';
 import { authenticate } from '../middlewares/auth';
 
-const router = express.Router();
+const router: Router = express.Router();
 
-// Get the current user's profile
-router.get('/', authenticate, getProfile);
+// Get current user's profile
+router.get('/', authenticate as express.RequestHandler, getProfile as express.RequestHandler);
 
-// Update the current user's profile
-router.put('/', authenticate, updateProfile);
+// Update current user's profile
+router.put('/', authenticate as express.RequestHandler, updateProfile as express.RequestHandler);
 
 export default router;
 ```
@@ -263,33 +280,74 @@ export default router;
 ```typescript
 // server/src/controllers/profileController.ts
 import { Request, Response } from 'express';
-import * as profileService from '../services/profileService';
+import { PrismaClient } from '@prisma/client';
 import { UpdateProfileRequest } from '../types/requests';
+
+const prisma = new PrismaClient();
 
 /**
  * Get the current user's profile
  */
-export const getProfile = async (req: Request, res: Response) => {
+export const getProfile = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.user?.id;
     
     if (!userId) {
-      return res.status(401).json({ 
+      res.status(401).json({ 
         success: false, 
         message: 'Not authenticated' 
       });
+      return;
     }
 
-    const profile = await profileService.getProfileById(userId);
-    
-    return res.status(200).json({
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        jobTitle: true,
+        bio: true,
+        yearsAtCompany: true,
+        yearsInDept: true,
+        yearsInRole: true,
+        companyName: true,
+        companyRole: true,
+        departmentName: true,
+        companyId: true,
+        reportsToEmail: true,
+        managerName: true,
+        title: true,
+        institution: true,
+        years: true,
+        references: true,
+        certifications: true,
+        skills: true,
+        achievements: true,
+        publications: true,
+        links: true,
+        createdAt: true,
+        updatedAt: true
+      }
+    });
+
+    if (!user) {
+      res.status(404).json({
+        success: false,
+        message: 'Profile not found'
+      });
+      return;
+    }
+
+    res.status(200).json({
       success: true,
       message: 'Profile retrieved successfully',
-      profile
+      profile: user
     });
   } catch (error) {
     console.error('Error getting profile:', error);
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
       message: error instanceof Error ? error.message : 'Internal server error'
     });
@@ -299,98 +357,88 @@ export const getProfile = async (req: Request, res: Response) => {
 /**
  * Update the current user's profile
  */
-export const updateProfile = async (req: Request, res: Response) => {
+export const updateProfile = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = req.user?.id;
     
     if (!userId) {
-      return res.status(401).json({ 
+      res.status(401).json({ 
         success: false, 
         message: 'Not authenticated' 
       });
+      return;
     }
 
     const profileData: UpdateProfileRequest = req.body;
     
-    const updatedProfile = await profileService.updateProfile(userId, profileData);
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: {
+        firstName: profileData.firstName,
+        lastName: profileData.lastName,
+        jobTitle: profileData.jobTitle,
+        bio: profileData.bio,
+        yearsAtCompany: profileData.yearsAtCompany,
+        yearsInDept: profileData.yearsInDept,
+        yearsInRole: profileData.yearsInRole,
+        companyName: profileData.companyName,
+        companyRole: profileData.companyRole,
+        departmentName: profileData.departmentName,
+        companyId: profileData.companyId,
+        reportsToEmail: profileData.reportsToEmail,
+        managerName: profileData.managerName,
+        title: profileData.title,
+        institution: profileData.institution,
+        years: profileData.years,
+        references: profileData.references,
+        certifications: profileData.certifications,
+        skills: profileData.skills,
+        achievements: profileData.achievements,
+        publications: profileData.publications,
+        links: profileData.links
+      },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        jobTitle: true,
+        bio: true,
+        yearsAtCompany: true,
+        yearsInDept: true,
+        yearsInRole: true,
+        companyName: true,
+        companyRole: true,
+        departmentName: true,
+        companyId: true,
+        reportsToEmail: true,
+        managerName: true,
+        title: true,
+        institution: true,
+        years: true,
+        references: true,
+        certifications: true,
+        skills: true,
+        achievements: true,
+        publications: true,
+        links: true,
+        createdAt: true,
+        updatedAt: true
+      }
+    });
     
-    return res.status(200).json({
+    res.status(200).json({
       success: true,
       message: 'Profile updated successfully',
-      profile: updatedProfile
+      profile: updatedUser
     });
   } catch (error) {
     console.error('Error updating profile:', error);
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
       message: error instanceof Error ? error.message : 'Internal server error'
     });
   }
-};
-```
-
-### Backend Service
-
-```typescript
-// server/src/services/profileService.ts
-import { PrismaClient } from '@prisma/client';
-import { ProfileData, UpdateProfileRequest } from '../types/profile';
-
-const prisma = new PrismaClient();
-
-/**
- * Get a user's profile by ID
- */
-export const getProfileById = async (userId: string): Promise<ProfileData> => {
-  const user = await prisma.user.findUnique({
-    where: { id: userId }
-  });
-
-  if (!user) {
-    throw new Error('User not found');
-  }
-
-  return user;
-};
-
-/**
- * Update a user's profile
- */
-export const updateProfile = async (
-  userId: string, 
-  profileData: UpdateProfileRequest
-): Promise<ProfileData> => {
-  // Validate any required fields or business rules here
-  
-  const updatedUser = await prisma.user.update({
-    where: { id: userId },
-    data: {
-      firstName: profileData.firstName,
-      lastName: profileData.lastName,
-      jobTitle: profileData.jobTitle,
-      bio: profileData.bio,
-      yearsAtCompany: profileData.yearsAtCompany,
-      yearsInDept: profileData.yearsInDept,
-      yearsInRole: profileData.yearsInRole,
-      companyName: profileData.companyName,
-      companyRole: profileData.companyRole,
-      departmentName: profileData.departmentName,
-      companyId: profileData.companyId,
-      reportsToEmail: profileData.reportsToEmail,
-      managerName: profileData.managerName,
-      title: profileData.title,
-      institution: profileData.institution,
-      years: profileData.years,
-      references: profileData.references,
-      certifications: profileData.certifications,
-      skills: profileData.skills,
-      achievements: profileData.achievements,
-      publications: profileData.publications,
-      links: profileData.links
-    }
-  });
-
-  return updatedUser;
 };
 ```
 
@@ -1141,7 +1189,7 @@ Follow these steps to implement the profile update functionality in your applica
 
 First, create the necessary type definitions in the appropriate files:
 
-- For frontend: `client/src/types/profile.ts`
+- For frontend: `client/src/types/entities/user.ts`
 - For backend: `server/src/types/profile.ts` and `server/src/types/requests.ts`
 
 ### 2. Backend Implementation

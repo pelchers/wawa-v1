@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import path from "path";
 import db from './db';
 import authRoutes from './routes/authRoutes';
+import profileRoutes from './routes/profileRoutes';
 
 // Load environment-specific variables
 dotenv.config({
@@ -64,6 +65,9 @@ app.post("/api/log", (req, res) => {
 
 // Add auth routes
 app.use('/api/auth', authRoutes);
+
+// Add profile routes
+app.use('/api/profile', profileRoutes);
 
 // Add a test query to verify connection
 db.query('SELECT NOW()', (err, res) => {

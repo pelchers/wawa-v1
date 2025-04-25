@@ -17,12 +17,12 @@ export interface Profile {
   title?: string;
   institution?: string;
   years?: number;
-  references: string[];
-  certifications: string[];
-  skills: string[];
-  achievements: string[];
-  publications: string[];
-  links: string[];
+  references?: string[];
+  certifications?: string[];
+  skills?: string[];
+  achievements?: string[];
+  publications?: string[];
+  links?: string[];
   createdAt: string;
   updatedAt: string;
 }

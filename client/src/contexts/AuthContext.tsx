@@ -6,6 +6,7 @@ import * as authApi from '../api/auth';
 const defaultAuthState: AuthState = {
   isAuthenticated: false,
   user: null,
+  token: null,
   loading: true,
   error: null,
 };
@@ -50,6 +51,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           setAuthState({
             isAuthenticated: true,
             user: response.user,
+            token,
             loading: false,
             error: null,
           });
@@ -91,6 +93,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setAuthState({
           isAuthenticated: true,
           user: response.user,
+          token: response.token,
           loading: false,
           error: null,
         });
@@ -133,6 +136,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setAuthState({
           isAuthenticated: true,
           user: response.user,
+          token: response.token,
           loading: false,
           error: null,
         });
@@ -165,6 +169,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setAuthState({
       isAuthenticated: false,
       user: null,
+      token: null,
       loading: false,
       error: null,
     });

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getProfile, updateProfile } from '../../api/profile';
 import { Profile as ProfileType } from '../../types/profile';
 import Profile from '../../components/profile/Profile';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../contexts/AuthContext';
 
 const ProfilePage: React.FC = () => {
   const [profile, setProfile] = useState<ProfileType | null>(null);
@@ -13,7 +13,7 @@ const ProfilePage: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated || !token) {
       navigate('/auth/login');
       return;
     }
@@ -41,6 +41,11 @@ const ProfilePage: React.FC = () => {
   }, [token, isAuthenticated, navigate]);
 
   const handleUpdateProfile = async (updatedProfile: ProfileType) => {
+    if (!token) {
+      setError('Not authenticated');
+      return;
+    }
+
     try {
       setLoading(true);
       setError(null);
