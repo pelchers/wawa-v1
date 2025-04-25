@@ -17,10 +17,11 @@ const Conclusion: FC = () => {
       <div className="prose prose-lg max-w-none">
         <h3 className="font-wawaHeading text-xl font-semibold mb-6">Strategic Summary</h3>
         <p className="mb-8">
-          This marketing plan represents a comprehensive approach to expanding Wawa's brand presence and 
-          market reach while maintaining our commitment to quality, community, and customer experience. 
-          By leveraging digital channels, strategic partnerships, and our unique brand strengths, we are 
-          well-positioned to achieve our marketing objectives and drive sustainable growth.
+          This marketing plan presents a bold strategy focused on three key pillars: aggressive social media 
+          expansion to build digital engagement, strategic traditional media licensing with major cultural 
+          figures and entertainment properties, and cost-effective physical expansion through travel hubs 
+          and event centers. By leveraging these channels while maintaining our commitment to quality and 
+          service, we are positioned to achieve nationwide brand recognition and significant market growth.
         </p>
         
         {/* Key Takeaways */}
@@ -34,53 +35,84 @@ const Conclusion: FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
               </div>
-              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">Strategic Growth</h4>
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">Social Media Expansion</h4>
               <p className="text-sm text-wawa-gray-700">
-                Our three-pillar approach of digital expansion, strategic partnerships, and customer loyalty 
-                provides a balanced strategy for growth that leverages our strengths while addressing market challenges.
+                Aggressive digital growth through structured partnership tiers (100 premiere, 100-150 sublevel) 
+                and targeted content strategy to achieve 250K+ followers per platform.
               </p>
             </div>
             
             <div className="bg-white rounded-xl p-6 shadow-md">
-              <div className="w-12 h-12 bg-wawa-red-600 text-white rounded-full flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-wawa-yellow-600 text-white rounded-full flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
               </div>
-              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">Measurable Outcomes</h4>
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-yellow-600 mb-2">Traditional Media Licensing</h4>
               <p className="text-sm text-wawa-gray-700">
-                Clear, measurable objectives and KPIs will allow us to track progress, demonstrate ROI, 
-                and make data-driven adjustments throughout the implementation of our marketing plan.
+                Strategic partnerships with cultural figures, TV shows, movies, and entertainment properties 
+                to build brand recognition and market presence.
               </p>
             </div>
             
             <div className="bg-white rounded-xl p-6 shadow-md">
-              <div className="w-12 h-12 bg-wawa-red-600 text-white rounded-full flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">Adaptable Approach</h4>
+              <h4 className="font-wawaHeading text-lg font-semibold text-green-600 mb-2">Strategic Locations</h4>
               <p className="text-sm text-wawa-gray-700">
-                Our phased implementation and contingency planning ensure we can adapt to changing market 
-                conditions, competitive responses, and emerging opportunities throughout the year.
+                Cost-effective expansion through travel hubs and event centers, focusing on high-traffic 
+                locations with minimal investment requirements.
               </p>
             </div>
           </div>
         </div>
         
+        {/* Performance Metrics */}
+        <h3 className="font-wawaHeading text-xl font-semibold mb-4">Key Performance Metrics</h3>
+        
+        <div className="bg-white border border-wawa-gray-200 rounded-xl p-6 shadow-sm mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="w-20 h-20 bg-wawa-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-wawa-red-600">80%</span>
+              </div>
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800 mb-2">Cost Reduction</h4>
+              <p className="text-sm text-wawa-gray-600">vs. traditional expansion methods</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-20 h-20 bg-wawa-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-wawa-red-600">3.5x</span>
+              </div>
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800 mb-2">Brand Recognition ROI</h4>
+              <p className="text-sm text-wawa-gray-600">media value vs. spend</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-20 h-20 bg-wawa-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-wawa-red-600">10%+</span>
+              </div>
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800 mb-2">Market Share</h4>
+              <p className="text-sm text-wawa-gray-600">target in new markets</p>
+            </div>
+          </div>
+        </div>
+        
         {/* Next Steps */}
-        <h3 className="font-wawaHeading text-xl font-semibold mb-4">Next Steps</h3>
+        <h3 className="font-wawaHeading text-xl font-semibold mb-4">Implementation Plan</h3>
         
         <div className="bg-white border border-wawa-gray-200 rounded-xl p-6 shadow-sm mb-12">
           <ol className="space-y-4">
             <li className="flex">
               <span className="bg-wawa-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-1">1</span>
               <div>
-                <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800">Finalize Team Structure</h4>
+                <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800">Launch Digital Partnerships</h4>
                 <p className="text-sm text-wawa-gray-600">
-                  Complete the staffing and organization of the marketing, operations, and technology teams 
-                  responsible for implementing the marketing plan.
+                  Begin outreach and negotiations for premiere and sublevel partnerships, establish content 
+                  creation pipelines, and implement tracking systems.
                 </p>
               </div>
             </li>
@@ -88,10 +120,10 @@ const Conclusion: FC = () => {
             <li className="flex">
               <span className="bg-wawa-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-1">2</span>
               <div>
-                <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800">Secure Budget Approval</h4>
+                <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800">Secure Media Licensing</h4>
                 <p className="text-sm text-wawa-gray-600">
-                  Present the marketing plan and budget to executive leadership for final approval and 
-                  resource allocation.
+                  Initiate discussions with entertainment properties, cultural figures, and media platforms 
+                  for strategic brand integration opportunities.
                 </p>
               </div>
             </li>
@@ -99,10 +131,10 @@ const Conclusion: FC = () => {
             <li className="flex">
               <span className="bg-wawa-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-1">3</span>
               <div>
-                <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800">Develop Detailed Action Plans</h4>
+                <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800">Location Strategy</h4>
                 <p className="text-sm text-wawa-gray-600">
-                  Create detailed action plans for each initiative, including specific tasks, timelines, 
-                  responsibilities, and success metrics.
+                  Identify and evaluate potential travel hub and event center locations, develop market-specific 
+                  product offerings, and establish partnerships.
                 </p>
               </div>
             </li>
@@ -110,21 +142,10 @@ const Conclusion: FC = () => {
             <li className="flex">
               <span className="bg-wawa-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-1">4</span>
               <div>
-                <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800">Establish Partnerships</h4>
+                <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800">Performance Tracking</h4>
                 <p className="text-sm text-wawa-gray-600">
-                  Begin outreach and negotiations with potential partners for the airport licensing program, 
-                  influencer collaborations, and other strategic alliances.
-                </p>
-              </div>
-            </li>
-            
-            <li className="flex">
-              <span className="bg-wawa-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 mt-1">5</span>
-              <div>
-                <h4 className="font-wawaHeading text-lg font-semibold text-wawa-gray-800">Launch Initial Campaigns</h4>
-                <p className="text-sm text-wawa-gray-600">
-                  Develop and launch the first wave of digital marketing campaigns to begin building 
-                  momentum and generating data for optimization.
+                  Implement comprehensive tracking systems for digital engagement, media impact, and location 
+                  performance metrics across all channels.
                 </p>
               </div>
             </li>
@@ -133,15 +154,15 @@ const Conclusion: FC = () => {
         
         {/* Vision Statement */}
         <div className="bg-wawa-red-600 text-white rounded-xl p-8 mb-8">
-          <h3 className="font-wawaHeading text-2xl font-bold mb-4 text-center">Our Vision for Success</h3>
+          <h3 className="font-wawaHeading text-2xl font-bold mb-4 text-center">Our Path Forward</h3>
           <p className="text-lg italic text-center mb-6">
-            "By implementing this marketing plan, we will transform Wawa from a beloved regional brand to a 
-            nationally recognized leader in convenience retail, known for our quality products, exceptional 
-            customer experience, and strong community connections."
+            "Through our three-pillar strategy of social media expansion, traditional media licensing, and 
+            strategic location presence, we will establish Wawa as a nationally recognized brand while 
+            maintaining an 80% cost reduction compared to traditional expansion methods."
           </p>
           <p className="text-center">
-            With a clear strategy, dedicated team, and commitment to our core values, we are confident in our 
-            ability to achieve our marketing objectives and drive sustainable growth for Wawa.
+            By prioritizing brand awareness and market penetration over immediate customer acquisition, 
+            we are positioned to achieve sustainable growth through high-impact, low-cost initiatives.
           </p>
         </div>
       </div>

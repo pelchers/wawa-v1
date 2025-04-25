@@ -15,11 +15,38 @@ const Budget: FC = () => {
       }}
     >
       <div className="prose prose-lg max-w-none">
+        {/* Strategic Overview */}
+        <div className="bg-wawa-red-50 rounded-xl p-6 mb-8">
+          <h3 className="font-wawaHeading text-xl font-semibold text-wawa-red-600 mb-4">Strategic Investment Approach</h3>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">Digital Engagement</h4>
+              <p className="text-sm text-wawa-gray-700">
+                Structured partnership tiers with 100 premiere and 100-150 sublevel partnerships, targeting 
+                250K+ followers per platform.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-yellow-600 mb-2">Media Licensing</h4>
+              <p className="text-sm text-wawa-gray-700">
+                Strategic entertainment partnerships with cultural figures, TV shows, movies, and major events 
+                for brand integration.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg p-4">
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-green-600 mb-2">Strategic Locations</h4>
+              <p className="text-sm text-wawa-gray-700">
+                Cost-effective expansion through travel hubs and event centers with regional product adaptation.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <h3 className="font-wawaHeading text-xl font-semibold mb-6">Marketing Budget Allocation</h3>
         <p className="mb-8">
-          Our budget allocation is strategically designed to support our marketing objectives while ensuring 
-          efficient use of resources. We've prioritized investments in digital channels, strategic partnerships, 
-          and customer experience enhancements to drive maximum impact.
+          Our budget allocation is strategically designed to maximize brand impact while maintaining a cost-efficient 
+          approach. We focus on high-impact, low-cost initiatives across digital engagement, traditional media licensing, 
+          and strategic location expansion, achieving an 80% cost reduction compared to traditional expansion methods.
         </p>
         
         {/* Budget Table */}
@@ -39,39 +66,39 @@ const Budget: FC = () => {
               <tbody className="divide-y divide-wawa-gray-200">
                 <tr>
                   <td className="py-3 px-4 font-medium">Digital Marketing</td>
-                  <td className="py-3 px-4 text-center">35%</td>
-                  <td className="py-3 px-4 text-right">$1,750,000</td>
-                  <td className="py-3 px-4 text-sm">Social media, influencer partnerships, digital advertising</td>
+                  <td className="py-3 px-4 text-center">30%</td>
+                  <td className="py-3 px-4 text-right">$3,000,000</td>
+                  <td className="py-3 px-4 text-sm">Social media campaigns, influencer partnerships, segmented digital content</td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4 font-medium">Strategic Partnerships</td>
+                  <td className="py-3 px-4 font-medium">Media Licensing</td>
                   <td className="py-3 px-4 text-center">25%</td>
-                  <td className="py-3 px-4 text-right">$1,250,000</td>
-                  <td className="py-3 px-4 text-sm">Airport licensing, corporate partnerships, co-branding</td>
+                  <td className="py-3 px-4 text-right">$2,500,000</td>
+                  <td className="py-3 px-4 text-sm">Celebrity partnerships, TV/movie licensing, entertainment collaborations</td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4 font-medium">Customer Experience</td>
+                  <td className="py-3 px-4 font-medium">Location & Product Development</td>
                   <td className="py-3 px-4 text-center">20%</td>
-                  <td className="py-3 px-4 text-right">$1,000,000</td>
-                  <td className="py-3 px-4 text-sm">Mobile app enhancements, loyalty program, in-store experience</td>
+                  <td className="py-3 px-4 text-right">$2,000,000</td>
+                  <td className="py-3 px-4 text-sm">Market-specific menu development, airport/event center adaptations</td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4 font-medium">Market Research</td>
-                  <td className="py-3 px-4 text-center">10%</td>
-                  <td className="py-3 px-4 text-right">$500,000</td>
-                  <td className="py-3 px-4 text-sm">Consumer insights, competitive analysis, trend monitoring</td>
+                  <td className="py-3 px-4 font-medium">Market Analysis & Metrics</td>
+                  <td className="py-3 px-4 text-center">15%</td>
+                  <td className="py-3 px-4 text-right">$1,500,000</td>
+                  <td className="py-3 px-4 text-sm">Cross-channel tracking, market viability studies, expansion analysis</td>
                 </tr>
                 <tr>
                   <td className="py-3 px-4 font-medium">Contingency</td>
                   <td className="py-3 px-4 text-center">10%</td>
-                  <td className="py-3 px-4 text-right">$500,000</td>
-                  <td className="py-3 px-4 text-sm">Reserved for unexpected opportunities or challenges</td>
+                  <td className="py-3 px-4 text-right">$1,000,000</td>
+                  <td className="py-3 px-4 text-sm">Rapid response to market opportunities, emergency funds</td>
                 </tr>
                 <tr className="bg-wawa-gray-50 font-semibold">
                   <td className="py-3 px-4">Total</td>
                   <td className="py-3 px-4 text-center">100%</td>
-                  <td className="py-3 px-4 text-right">$5,000,000</td>
-                  <td className="py-3 px-4"></td>
+                  <td className="py-3 px-4 text-right">$10,000,000</td>
+                  <td className="py-3 px-4">Annual marketing budget</td>
                 </tr>
               </tbody>
             </table>
@@ -79,163 +106,159 @@ const Budget: FC = () => {
         </div>
         
         {/* Budget Breakdown */}
-        <h3 className="font-wawaHeading text-xl font-semibold mb-4">Detailed Breakdown</h3>
+        <h3 className="font-wawaHeading text-xl font-semibold mb-4">Channel-Specific Investments</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <div>
-            <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-4">Digital Marketing ($1,750,000)</h4>
+            <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-4">Digital Engagement ($3,000,000)</h4>
             <div className="space-y-4">
               <div className="bg-white p-4 rounded-lg shadow-sm">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="font-medium">Social Media Campaigns</span>
-                  <span className="text-wawa-red-600">$700,000</span>
+                  <span className="font-medium">Premiere Partnerships</span>
+                  <span className="text-wawa-red-600">$1,200,000</span>
                 </div>
                 <p className="text-sm text-wawa-gray-600">
-                  Targeted advertising on Instagram, TikTok, Facebook, and Twitter to reach new audiences and engage existing customers.
+                  100 high-impact influencer partnerships with major digital creators and platforms.
                 </p>
               </div>
               
               <div className="bg-white p-4 rounded-lg shadow-sm">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="font-medium">Influencer Partnerships</span>
-                  <span className="text-wawa-red-600">$500,000</span>
+                  <span className="font-medium">Sublevel Partnerships</span>
+                  <span className="text-wawa-red-600">$900,000</span>
                 </div>
                 <p className="text-sm text-wawa-gray-600">
-                  Collaborations with creators who align with our brand values to expand reach and build credibility in new markets.
+                  100-150 targeted partnerships with niche market influencers and content creators.
                 </p>
               </div>
               
               <div className="bg-white p-4 rounded-lg shadow-sm">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="font-medium">Content Creation</span>
-                  <span className="text-wawa-red-600">$350,000</span>
+                  <span className="font-medium">Platform Growth</span>
+                  <span className="text-wawa-red-600">$600,000</span>
                 </div>
                 <p className="text-sm text-wawa-gray-600">
-                  Development of high-quality video, photography, and written content for digital channels and campaigns.
+                  Targeted campaigns to achieve 250K+ followers per social media platform.
                 </p>
               </div>
               
               <div className="bg-white p-4 rounded-lg shadow-sm">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="font-medium">Digital Analytics & Tools</span>
-                  <span className="text-wawa-red-600">$200,000</span>
+                  <span className="font-medium">Content Strategy</span>
+                  <span className="text-wawa-red-600">$300,000</span>
                 </div>
                 <p className="text-sm text-wawa-gray-600">
-                  Investment in analytics platforms, marketing automation, and other digital tools to optimize campaign performance.
+                  Market-segmented content development and optimization across platforms.
                 </p>
               </div>
             </div>
           </div>
           
           <div>
-            <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-4">Strategic Partnerships ($1,250,000)</h4>
+            <h4 className="font-wawaHeading text-lg font-semibold text-wawa-yellow-600 mb-4">Traditional Media ($2,500,000)</h4>
             <div className="space-y-4">
               <div className="bg-white p-4 rounded-lg shadow-sm">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="font-medium">Airport Licensing Program</span>
-                  <span className="text-wawa-red-600">$750,000</span>
+                  <span className="font-medium">Celebrity Partnerships</span>
+                  <span className="text-wawa-yellow-600">$1,000,000</span>
                 </div>
                 <p className="text-sm text-wawa-gray-600">
-                  Establishment of Wawa locations in major airports, including licensing fees, design, and implementation costs.
+                  Strategic partnerships with prominent cultural figures and brand ambassadors.
                 </p>
               </div>
               
               <div className="bg-white p-4 rounded-lg shadow-sm">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="font-medium">Corporate Partnerships</span>
-                  <span className="text-wawa-red-600">$300,000</span>
+                  <span className="font-medium">Entertainment Licensing</span>
+                  <span className="text-wawa-yellow-600">$900,000</span>
                 </div>
                 <p className="text-sm text-wawa-gray-600">
-                  Development of partnerships with corporations for campus locations, catering services, and employee programs.
+                  TV show and movie product placement, entertainment property licensing.
                 </p>
               </div>
               
               <div className="bg-white p-4 rounded-lg shadow-sm">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="font-medium">Co-Branding Initiatives</span>
-                  <span className="text-wawa-red-600">$200,000</span>
+                  <span className="font-medium">Cultural Integration</span>
+                  <span className="text-wawa-yellow-600">$600,000</span>
                 </div>
                 <p className="text-sm text-wawa-gray-600">
-                  Collaborative product development and marketing with complementary brands to expand reach and enhance offerings.
+                  Integration with major cultural events and entertainment venues.
                 </p>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Location & Product Development */}
+        <div className="bg-green-50 rounded-xl p-6 mb-12">
+          <h4 className="font-wawaHeading text-lg font-semibold text-wawa-green-600 mb-4">Location & Product Strategy ($2,000,000)</h4>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h5 className="font-wawaHeading text-base font-semibold mb-3">Travel Hub Implementation</h5>
+              <ul className="list-disc pl-6 space-y-2 text-sm text-wawa-gray-700">
+                <li>Airport location partnerships and setup</li>
+                <li>Event center presence establishment</li>
+                <li>Transit hub optimization</li>
+                <li>Location-specific operations</li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-wawaHeading text-base font-semibold mb-3">Product Adaptation</h5>
+              <ul className="list-disc pl-6 space-y-2 text-sm text-wawa-gray-700">
+                <li>Regional menu customization</li>
+                <li>Travel-friendly packaging solutions</li>
+                <li>Event-specific offerings</li>
+                <li>Market-specific testing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
         
-        {/* ROI Projections */}
-        <h3 className="font-wawaHeading text-xl font-semibold mb-4">ROI Projections</h3>
+        {/* Performance Metrics */}
+        <h3 className="font-wawaHeading text-xl font-semibold mb-4">Performance Metrics</h3>
         
         <div className="bg-wawa-gray-50 rounded-xl p-6 mb-12">
           <p className="mb-6">
-            Our marketing investments are projected to deliver significant returns across multiple metrics, 
-            with a focus on both short-term revenue growth and long-term brand equity building.
+            Our investment strategy prioritizes brand awareness and market penetration over immediate customer 
+            acquisition, with a focus on cost-efficient expansion and long-term brand equity building.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-4 text-center">Financial ROI</h4>
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-4 text-center">Cost Efficiency</h4>
               <div className="flex justify-center mb-4">
                 <div className="w-24 h-24 rounded-full bg-wawa-red-50 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-wawa-red-600">3.2x</span>
+                  <span className="text-2xl font-bold text-wawa-red-600">80%</span>
                 </div>
               </div>
               <p className="text-sm text-center">
-                Expected return on marketing investment, with $16M in incremental revenue from $5M marketing spend.
+                Reduction in expansion costs compared to traditional methods through strategic partnerships.
               </p>
             </div>
             
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-4 text-center">Customer Growth</h4>
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-4 text-center">Brand Recognition</h4>
               <div className="flex justify-center mb-4">
                 <div className="w-24 h-24 rounded-full bg-wawa-red-50 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-wawa-red-600">+15%</span>
+                  <span className="text-2xl font-bold text-wawa-red-600">3.5x</span>
                 </div>
               </div>
               <p className="text-sm text-center">
-                Projected increase in active customer base, with 700,000 new customers acquired through marketing initiatives.
+                Expected ROI on brand recognition initiatives through media value versus spend.
               </p>
             </div>
             
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-4 text-center">Brand Value</h4>
+              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-4 text-center">Market Share</h4>
               <div className="flex justify-center mb-4">
                 <div className="w-24 h-24 rounded-full bg-wawa-red-50 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-wawa-red-600">+20%</span>
+                  <span className="text-2xl font-bold text-wawa-red-600">10%+</span>
                 </div>
               </div>
               <p className="text-sm text-center">
-                Expected increase in brand value, strengthening Wawa's position in the market and supporting future growth.
+                Target market share in new markets, exceeding current fast food brand penetration rates.
               </p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Budget Management */}
-        <h3 className="font-wawaHeading text-xl font-semibold mb-4">Budget Management</h3>
-        
-        <div className="bg-white border border-wawa-gray-200 rounded-xl p-6 shadow-sm mb-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-4">Monitoring & Control</h4>
-              <ul className="list-disc list-inside text-sm space-y-2">
-                <li>Monthly budget reviews with all department heads</li>
-                <li>Quarterly performance assessments against KPIs</li>
-                <li>Real-time tracking of digital campaign spend</li>
-                <li>Approval process for any budget reallocation</li>
-                <li>Contingency fund management protocol</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-4">Optimization Strategy</h4>
-              <ul className="list-disc list-inside text-sm space-y-2">
-                <li>Performance-based budget reallocation</li>
-                <li>A/B testing to optimize campaign efficiency</li>
-                <li>Scaling successful initiatives with additional funding</li>
-                <li>Reducing or eliminating underperforming activities</li>
-                <li>Leveraging data analytics for spend optimization</li>
-              </ul>
             </div>
           </div>
         </div>
