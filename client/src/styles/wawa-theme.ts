@@ -20,6 +20,8 @@ export const wawaTheme = {
   card: "bg-white rounded-lg shadow-md p-6 border border-wawa-black-100",
   cardHighlight: "bg-wawa-yellow-50 rounded-lg shadow-md p-6 border border-wawa-yellow-200",
   
+
+  
   // Utility classes
   container: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
   section: "py-12 md:py-20",

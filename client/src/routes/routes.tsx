@@ -5,7 +5,7 @@ import MainLayout from '../components/layout/MainLayout';
 // Import auth pages
 import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
-import Profile from '../pages/auth/Profile';
+import AuthProfile from '../pages/auth/Profile';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
 
 // Import section pages
@@ -21,6 +21,7 @@ import Execution from '../pages/sections/Execution';
 import Budget from '../pages/sections/Budget';
 import Conclusion from '../pages/sections/Conclusion';
 import Feedback from '../pages/sections/Feedback';
+import ProfilePage from '../pages/profile/profile';
 
 // Define the router configuration
 const router = createBrowserRouter([
@@ -34,8 +35,12 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
+    path: '/authprofile',
+    element: <ProtectedRoute><MainLayout><AuthProfile /></MainLayout></ProtectedRoute>,
+  },
+  {
     path: '/profile',
-    element: <ProtectedRoute><MainLayout><Profile /></MainLayout></ProtectedRoute>,
+    element: <ProtectedRoute><MainLayout><ProfilePage /></MainLayout></ProtectedRoute>,
   },
   
   // Main routes with protection

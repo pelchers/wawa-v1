@@ -98,12 +98,20 @@ const SettingsMenu: FC<SettingsMenuProps> = ({
               {isLoggedIn ? (
                 <>
                   <Link
+                    to="/authprofile"
+                    className="block px-4 py-2 text-sm text-wawa-gray-700 hover:bg-wawa-yellow-400 
+                             hover:text-wawa-red-600 transition-all duration-200"
+                    onClick={() => handleNavigation('Auth Profile', '/authprofile')}
+                  >
+                    Auth Profile
+                  </Link>
+                  <Link
                     to="/profile"
                     className="block px-4 py-2 text-sm text-wawa-gray-700 hover:bg-wawa-yellow-400 
                              hover:text-wawa-red-600 transition-all duration-200"
                     onClick={() => handleNavigation('Profile', '/profile')}
                   >
-                    Profile
+                    Full Profile
                   </Link>
                   <button
                     className="block px-4 py-2 text-sm text-wawa-gray-700 hover:bg-wawa-yellow-400 

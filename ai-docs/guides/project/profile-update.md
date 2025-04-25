@@ -396,6 +396,112 @@ export const updateProfile = async (
 
 ## 3. Frontend Components
 
+### Custom Hooks
+
+Before implementing the components, let's create a custom hook to manage the profile form state and submission logic:
+
+```tsx
+// client/src/hooks/useProfileForm.tsx
+import { useState } from 'react';
+import { Profile, UpdateProfileRequest } from '../types/profile';
+import { updateProfile } from '../api/profile';
+import { useAuth } from './useAuth';
+
+export const useProfileForm = (profile: Profile, onSuccess: (updatedProfile: Profile) => void) => {
+  const [formData, setFormData] = useState<UpdateProfileRequest>({
+    firstName: profile.firstName || '',
+    lastName: profile.lastName || '',
+    jobTitle: profile.jobTitle || '',
+    bio: profile.bio || '',
+    yearsAtCompany: profile.yearsAtCompany || 0,
+    yearsInDept: profile.yearsInDept || 0,
+    yearsInRole: profile.yearsInRole || 0,
+    companyName: profile.companyName || '',
+    companyRole: profile.companyRole || '',
+    departmentName: profile.departmentName || '',
+    companyId: profile.companyId || '',
+    reportsToEmail: profile.reportsToEmail || '',
+    managerName: profile.managerName || '',
+    title: profile.title || '',
+    institution: profile.institution || '',
+    years: profile.years || 0,
+    references: profile.references || [],
+    certifications: profile.certifications || [],
+    skills: profile.skills || [],
+    achievements: profile.achievements || [],
+    publications: profile.publications || [],
+    links: profile.links || []
+  });
+  
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const { token } = useAuth();
+
+  // Handle text input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Handle number input changes
+  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: parseInt(value) || 0
+    }));
+  };
+
+  // Handle array input changes (comma-separated)
+  const handleArrayChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    const arrayValues = value.split(',').map(item => item.trim());
+    setFormData(prev => ({
+      ...prev,
+      [name]: arrayValues
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const response = await updateProfile(token, formData);
+      
+      if (response.success && response.profile) {
+        onSuccess(response.profile);
+      } else {
+        setError(response.message);
+      }
+    } catch (err) {
+      setError('Failed to update profile');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return {
+    formData,
+    loading,
+    error,
+    handleChange,
+    handleNumberChange,
+    handleArrayChange,
+    handleSubmit
+  };
+};
+```
+
+This custom hook extracts the form handling logic from the component, making the ProfileEditModal component cleaner and more focused on rendering. Now, let's implement the components:
+
 ### Profile Component
 
 ```tsx
@@ -1101,7 +1207,13 @@ First, create the necessary type definitions in the appropriate files:
 
    Add the API code as shown in the guide.
 
-2. **Create Profile Component**
+2. **Create useProfileForm hook**
+
+   
+
+   
+
+3. **Create Profile Component**
 
    Create the main Profile component that displays user information:
 
@@ -1112,7 +1224,7 @@ First, create the necessary type definitions in the appropriate files:
 
    Implement the component as shown in the guide.
 
-3. **Create Profile Edit Modal**
+4. **Create Profile Edit Modal**
 
    Implement the modal component for editing profile information:
 
@@ -1122,7 +1234,7 @@ First, create the necessary type definitions in the appropriate files:
 
    Add the code as shown in the guide.
 
-4. **Add Profile Route**
+5. **Add Profile Route**
 
    Update your application's routing to include the profile page:
 
@@ -1207,3 +1319,109 @@ Consider these potential enhancements for the profile update functionality:
 
 By following this guide, you'll have a complete profile update flow that follows the project's type organization and file communication conventions, allowing users to edit all fields from their profile.
 ```
+
+
+Let me analyze the differences between these type definitions:
+
+1. `client/src/types/entities/user.ts` (User interface):
+```typescript
+export interface User {
+  // Required fields
+  id: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+
+  // All array fields are optional
+  references?: string[];
+  certifications?: string[];
+  skills?: string[];
+  achievements?: string[];
+  publications?: string[];
+  links?: string[];
+  // ... other optional fields
+}
+```
+
+2. `client/src/types/profile.ts` (Profile interface):
+```typescript
+export interface Profile {
+  // Required fields
+  id: string;
+  email: string;
+  createdAt: string;  // Note: string instead of Date
+  updatedAt: string;  // Note: string instead of Date
+
+  // Array fields are required (not optional)
+  references: string[];
+  certifications: string[];
+  skills: string[];
+  achievements: string[];
+  publications: string[];
+  links: string[];
+  // ... other optional fields
+}
+```
+
+3. `server/src/types/profile.ts` (ProfileData interface):
+```typescript
+export interface ProfileData {
+  // Required fields
+  id: string;
+  email: string;
+  createdAt: Date;   // Uses Date type
+  updatedAt: Date;   // Uses Date type
+
+  // Array fields are required (not optional)
+  references: string[];
+  certifications: string[];
+  skills: string[];
+  achievements: string[];
+  publications: string[];
+  links: string[];
+  // ... other optional fields
+}
+```
+
+4. `server/src/types/requests.ts` (UpdateProfileRequest interface):
+```typescript
+export interface UpdateProfileRequest {
+  // Everything is optional
+  firstName?: string;
+  // ... all other fields are optional
+  references?: string[];
+  certifications?: string[];
+  skills?: string[];
+  achievements?: string[];
+  publications?: string[];
+  links?: string[];
+}
+```
+
+Key differences:
+1. **Date handling**:
+   - `User` and `ProfileData` use `Date` type
+   - `Profile` uses `string` type for dates
+   - `UpdateProfileRequest` doesn't include date fields
+
+2. **Array fields optionality**:
+   - `User`: All arrays are optional (?)
+   - `Profile` and `ProfileData`: Arrays are required
+   - `UpdateProfileRequest`: All arrays are optional
+
+3. **Purpose**:
+   - `User`: Used in client-side components for displaying user data
+   - `Profile`: Used for API responses in the client
+   - `ProfileData`: Used for internal server data handling
+   - `UpdateProfileRequest`: Used specifically for update operations where all fields are optional
+
+4. **Required fields**:
+   - `User`, `Profile`, and `ProfileData`: require `id`, `email`, and date fields
+   - `UpdateProfileRequest`: makes everything optional since it's for updates
+
+This suggests we should probably align these types better. We should:
+1. Use consistent date handling (either all `Date` or all `string`)
+2. Be consistent with array field optionality
+3. Consider merging some of these types or creating proper inheritance relationships between them
+
+Would you like me to help create a more consistent type system for these interfaces?
