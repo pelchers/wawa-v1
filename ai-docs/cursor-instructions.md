@@ -126,7 +126,7 @@ src/
 │   └── wawa-hero.jpg
 ├── campaigns/
 │   └── wawa-2025/
-│       └── index.tsx  <-- This is the page file you’ll edit per campaign
+│       └── index.tsx  <-- This is the page file you'll edit per campaign
 ├── components/
 │   ├── Hero.tsx
 │   ├── MissionSection.tsx
@@ -143,7 +143,7 @@ src/
 
 ## 📋 2. Section Outline (1:1 match with Marketing Plan)
 
-Here’s how you’ll break the single page down:
+Here's how you'll break the single page down:
 
 ### 🪪 Executive Summary
 - Section: `<Hero />` with `About Company`, `Mission`, `Vision`, `Objective`
@@ -242,7 +242,7 @@ const Wawa2025 = () => {
   return (
     <div className="flex flex-col">
       <section className={`${wawaTheme.primary} p-8`}>
-        <h1 className="text-4xl font-bold">Wawa’s 2025 Growth Campaign</h1>
+        <h1 className="text-4xl font-bold">Wawa's 2025 Growth Campaign</h1>
         <p>Fueling communities. Fresh food. Fast and friendly.</p>
       </section>
 
@@ -354,7 +354,7 @@ Break down your marketing tactics and assign a budget for each area of your stra
 ## **9. Conclusion**
 A review and overview of the campaign goals, objectives, execution, and desired outcome. This section ends with a **Call to Action (CTA)** to execute on the strategy.
 
-- [Summarize the campaign’s overall goals and objectives.]
+- [Summarize the campaign's overall goals and objectives.]
 - [Describe the desired outcome or impact of the campaign.]
 - **CTA**: [Include a call to action to start implementing the marketing plan.]
 
@@ -383,7 +383,7 @@ This section is designed to collect feedback, votes, and suggestions from partic
   [Insert a text box for suggestions.]
 
 ### **How to Submit Feedback**:
-- **Votes**: Each participant can select a star rating to provide their vote on the campaign’s viability or quality.
+- **Votes**: Each participant can select a star rating to provide their vote on the campaign's viability or quality.
 - **Comments**: Participants can add detailed feedback or thoughts on the campaign in the comments section.
 - **Suggestions**: Suggestions allow stakeholders to provide recommendations for improvement.
 
@@ -395,11 +395,37 @@ After gathering the votes, comments, and suggestions, compile the feedback into 
 
 ---
 
-This structure ensures that you’re capturing important feedback, votes, and suggestions from those involved in reviewing the marketing plan. It gives stakeholders a way to participate in the decision-making process and provides a formal structure to assess the plan’s effectiveness based on their feedback.
+This structure ensures that you're capturing important feedback, votes, and suggestions from those involved in reviewing the marketing plan. It gives stakeholders a way to participate in the decision-making process and provides a formal structure to assess the plan's effectiveness based on their feedback.
 
 Let me know if you'd like to add more details or make further adjustments!
 
 **Example of good response:** [Example would go here]
 
 ## 5. We are using a single server monorepo for the frontend and backend to make it easier to manage the codebase and deploy via services like render.com.
+
+## 6. When asked to update or write guides
+
+**Instruction:** When asked to write or update guides/documentation, always write the full content directly in the target file format, rather than providing instructions in the composer. This applies whether creating a new file or updating an existing one.
+
+**Example of good response:**
+
+When asked to update a profile-update.md guide with additional content:
+
+```markdown:ai-docs/guides/project/profile-update.md
+# Profile Update Flow Guide
+
+This document outlines the complete flow for updating user profiles in our application.
+
+[...existing content...]
+
+## 10. Future Enhancements
+
+Consider these potential enhancements for the profile update functionality:
+
+1. **Avatar Upload**: Add functionality for users to upload and update profile pictures.
+2. **Multi-step Form**: For larger profiles, consider breaking the edit form into multiple steps.
+3. **Auto-save**: Implement auto-saving for form fields as users type.
+```
+
+**Not** a list of instructions like:
 
