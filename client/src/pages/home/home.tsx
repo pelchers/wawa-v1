@@ -7,6 +7,16 @@ import ApprovalModal from '../../components/approvals/ApprovalModal';
 import MarketingPlanDropdown from '../../components/navigation/MarketingPlanDropdown';
 import SectionApprovalList from '../../components/approvals/SectionApprovalList';
 import SectionFeedback from '../../components/feedback/SectionFeedback';
+import { useAuth } from '../../contexts/AuthContext';
+import { useMarketingInteractions } from '../../hooks/marketing/useMarketingInteractions';
+import {
+  CommentSection,
+  QuestionSection,
+  LikeButton,
+  ApprovalSection,
+  InteractionStats,
+  MarketingPlanSection
+} from '../../barrel/marketing-interactions';
 
 // Keep the same sections as original home page
 const sections: Section[] = [
@@ -43,9 +53,18 @@ const Home = () => {
     'key-performance': useRef<HTMLDivElement>(null)
   };
 
+  const { user } = useAuth();
+  const { loading, error, data, actions } = useMarketingInteractions('FULL_PLAN' as MarketingPlanSection);
+
   useEffect(() => {
     logPageView('home-v2');
   }, []);
+
+  // Add effect to fetch interactions data
+  useEffect(() => {
+    console.log('Fetching initial interactions data');
+    actions.fetchInteractions();
+  }, [actions.fetchInteractions]);
 
   const handleSectionChange = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -1046,6 +1065,65 @@ const Home = () => {
 
       {/* Add Marketing Plan Dropdown */}
       <MarketingPlanDropdown />
+
+      {/* Marketing Plan Interactions */}
+      <div className="lg:col-span-3 mt-12">
+        <section className="bg-white rounded-2xl p-8 shadow-lg">
+          <h2 className="font-wawaHeading text-3xl font-bold text-wawa-red-600 mb-6">
+            Marketing Plan Interactions
+          </h2>
+
+          {/* Stats Overview */}
+          <div className="mb-8">
+            <InteractionStats
+              comments={data?.comments}
+              questions={data?.questions}
+              likes={data?.likes}
+              approvals={data?.approvals}
+            />
+          </div>
+
+          {/* Like Button */}
+          <div className="mb-8">
+            <LikeButton
+              likes={data?.likes || []}
+              onToggleLike={actions.toggleLike}
+              currentUserId={user?.id}
+              isSubmitting={loading}
+            />
+          </div>
+
+          {/* Comments Section */}
+          <div className="mb-8">
+            <CommentSection
+              comments={data?.comments || []}
+              onAddComment={actions.addComment}
+              isSubmitting={loading}
+            />
+          </div>
+
+          {/* Questions Section */}
+          <div className="mb-8">
+            <QuestionSection
+              questions={data?.questions || []}
+              onAddQuestion={actions.addQuestion}
+              onAnswerQuestion={actions.answerQuestion}
+              isSubmitting={loading}
+              canAnswer={user?.role === 'admin'}
+            />
+          </div>
+
+          {/* Approvals Section */}
+          <div className="mb-8">
+            <ApprovalSection
+              approvals={data?.approvals || []}
+              onSubmitApproval={actions.submitApproval}
+              isSubmitting={loading}
+              canApprove={user?.role === 'admin'}
+            />
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

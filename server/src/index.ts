@@ -5,6 +5,7 @@ import path from "path";
 import db from './db';
 import authRoutes from './routes/authRoutes';
 import profileRoutes from './routes/profileRoutes';
+import marketingRoutes from './routes/marketing-interactions';
 
 // Load environment-specific variables
 dotenv.config({
@@ -68,6 +69,9 @@ app.use('/api/auth', authRoutes);
 
 // Add profile routes
 app.use('/api/profile', profileRoutes);
+
+// Add marketing routes
+app.use('/api/marketing', marketingRoutes);
 
 // Add a test query to verify connection
 db.query('SELECT NOW()', (err, res) => {

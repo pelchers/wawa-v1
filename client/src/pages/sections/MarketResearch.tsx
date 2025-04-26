@@ -21,7 +21,7 @@ const MarketResearch: FC = () => {
           (i.e., analyzing travel hub demographics, digital engagement trends, and regional food preferences). This data-driven 
           approach informs our strategic decisions and helps optimize our market entry strategies.
         </p>
-
+        
         {/* Market Segments Analysis */}
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div className="bg-white rounded-xl p-6 shadow-lg border border-wawa-gray-200">
@@ -145,7 +145,7 @@ const MarketResearch: FC = () => {
                 60% improvement in sentiment accuracy tracking, and 30% increase in positive brand mentions.
               </div>
             </div>
-
+            
             {/* Regional Analysis Example */}
             <div className="bg-white rounded-lg p-4">
               <h4 className="font-wawaHeading text-lg font-semibold text-wawa-red-600 mb-2">
@@ -160,7 +160,7 @@ const MarketResearch: FC = () => {
               <div className="mt-4 text-sm text-wawa-gray-600">
                 <strong>Expected Results:</strong> 40% reduction in menu adaptation time, 
                 30% improvement in new item success rate, and 25% increase in customer satisfaction scores.
-              </div>
+            </div>
             </div>
           </div>
         </section>

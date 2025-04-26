@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/UNUSEDauthRoutes';
+import marketingRoutes from './routes/marketing-interactions';
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors({
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/marketing', marketingRoutes);
 
 // Health check route
 app.get('/health', (req, res) => {
